@@ -1,6 +1,9 @@
-*{
-  background-color: rgb(182, 182, 182);
+* {
+  background-color: #FFFFFF;
+  padding: 0;
+  margin: 0;
 }
-.h2{
+
+.h2 {
   color: black;
 }
