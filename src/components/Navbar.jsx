@@ -1,6 +1,6 @@
 import React from "react";
 
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import "./navbar.css";
 
@@ -14,8 +14,7 @@ export default function Navbar() {
                 <div >
                     <ul id="navItems">
                         <li className="item">
-                            <p>Home</p>
-                            {/*  <Link to="/"><i class="fa-solid fa-house fa-xl" style={{ color: "#ffffff", }}></i></Link> */}
+                            <Link to="/"><p>Home</p></Link>
                         </li>
                         <li className="item">
                             <p>Team</p>
@@ -40,6 +39,9 @@ export default function Navbar() {
                         <li className="item">
                             <p>Contacts</p>
                             {/* <Link to="/search"><i class="fa-solid fa-magnifying-glass fa-xl" style={{ color: "#ffffff", }}></i></Link> */}
+                        </li>
+                        <li className="item">
+                             <Link to="/login"><p>Login</p></Link> 
                         </li>
                     </ul>
                 </div>
