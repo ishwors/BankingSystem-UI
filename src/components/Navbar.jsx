@@ -1,15 +1,12 @@
-import React from "react";
 
 import { Link } from "react-router-dom";
-
-import "./navbar.css";
 
 export default function Navbar() {
     return (
         <nav>
             <div id="navContainer">
                 <div>
-                    <img src="/images/icons/AloiBank-icon_full-h.png" alt="Logo" id="navLogo" />
+                    <img src="/assets/image/AloiBank-logo_full-h.png" alt="Logo" id="navLogo" />
                 </div>
                 <div >
                     <ul id="navItems">

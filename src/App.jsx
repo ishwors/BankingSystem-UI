@@ -14,6 +14,7 @@ import Login from './pages/Login.jsx'
 
 //define css files
 import './index.css'
+import './styles/global.scss'
 
 function App() {
 
