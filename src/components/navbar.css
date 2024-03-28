@@ -1,0 +1,30 @@
+#navContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between !important;
+    flex-wrap: wrap;
+    border-bottom: 1px solid black;
+    height: 80px;
+    width: 100%;
+    align-items: center;
+}
+
+#navItems {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    text-align: center;
+    /* border: 1px solid black; */
+}
+
+.item {
+    /* border: 1px solid black; */
+    margin-left: 10px;
+    margin-right: 10px;
+    flex-basis: 50px;
+    list-style: none;
+}
+
+#navLogo {
+    width: 150px;
+}
