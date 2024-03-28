@@ -1,10 +1,18 @@
 import React from "react";
 
+import Navbar from "../components/Navbar.jsx";
+
+import LoginForm from "../components/loginForm";
+
 
 export default function Login() {
     return (
         <div>
-            <h1>Hello world! This is from Login page</h1>
+            <Navbar />
+            <center>
+                <h2>Login Form</h2>
+            </center>
+            <LoginForm />
         </div>
     )
 }
