@@ -10,6 +10,7 @@ import AdminLogin from './pages/admin/Login.jsx'
 import Home from './pages/Home.jsx'
 import NoPage from './pages/NoPage.jsx'
 import Login from './pages/Login.jsx'
+import Transaction from './pages/Transaction.jsx';
 
 
 //define css files
@@ -29,6 +30,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/@adminLogin" element={<AdminLogin />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/transaction" element={<Transaction/>}/>
             <Route path="*" element={<NoPage />} />
           </Routes>
         </div>

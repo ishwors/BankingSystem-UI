@@ -1,7 +1,9 @@
 @import './variables';
 @import './common';
 
+@import './macros/form';
 @import './macros/home';
 @import './macros/login';
 @import './macros/nopage';
 @import './macros/navbar';
+@import './macros/transaction'; 
