@@ -113,6 +113,7 @@ export default function Login() {
       localStorage.setItem('email', response.email);
       localStorage.setItem('userName', response.userName);
       localStorage.setItem('userType', response.userType);
+      localStorage.setItem('jwTtoken', response.jwTtoken);
       if (response.userType === "TellerPerson")
         window.location.href = "/adminDashboard";
       else if (response.userType === "AccountHolder")

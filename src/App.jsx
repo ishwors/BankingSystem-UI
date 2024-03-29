@@ -21,6 +21,8 @@ import Transaction from './pages/Transaction.jsx';
 //define css files
 import './index.css'
 import './styles/global.scss'
+import WithdrawMoneyForm from './components/WithdrawMoneyForm.jsx';
+import DepositMoneyForm from './components/DepositMoneyForm.jsx';
 
 
 function App() {
@@ -34,14 +36,17 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/@adminLogin" element={<AdminLogin />} />
             <Route path="/login" element={<Login />} />
+
             <Route path="/transaction" element={<Transaction/>}/>
 
             {/* teller routes */}
             <Route path="/adminDashboard" element={<AdminDashboard />} />
             <Route path="/adminViewUsers" element={<AdminViewUsers />} />
+            <Route path="/depositMoney" element={<DepositMoneyForm/>}/>
 
             {/* user routes */}
             <Route path="/userDashboard" element={<UserDashboard />} />
+            <Route path="/withdrawMoney" element={<WithdrawMoneyForm/>}/>
 
             <Route path="*" element={<NoPage />} />
           </Routes>

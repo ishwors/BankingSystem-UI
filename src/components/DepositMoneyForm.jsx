@@ -19,6 +19,16 @@ const DepositMoneyForm = () => {
     setAccountNumber(e.target.value);
   };
 
+  // Retrieve the JWT token from local storage
+  const token = localStorage.getItem('jwTtoken');
+
+  // Set the Authorization header with the JWT token
+  const config = {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -26,7 +36,7 @@ const DepositMoneyForm = () => {
       const response = await axios.post('http://localhost:5224/Transaction/deposit?accountNumber='+accountNumber, {
         amount,
         transactionRemarks
-      });
+      }, config);
       console.log('Deposit successful:', response.data);
       // Optionally, you can handle success here (e.g., show a success message)
     } catch (error) {

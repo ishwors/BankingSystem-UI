@@ -39,7 +39,7 @@ export default function AsideBar() {
 
                                 </li>
                                 <li className="item">
-                                    <p>Transactions</p>
+                                    <Link to="/transaction"><p>Transactions</p></Link>
                                 </li>
                                 <li className="item">
                                      <Link to="/adminViewUsers"><p>Users</p></Link>
@@ -77,7 +77,7 @@ export default function AsideBar() {
 
                                     </li>
                                     <li className="item">
-                                        <p>Transactions</p>
+                                        <Link to="/transaction"><p>Transactions</p></Link>
 
                                     </li>
                                     <li className="item" onClick={handleLogout}>
