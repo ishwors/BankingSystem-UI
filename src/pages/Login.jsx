@@ -114,9 +114,9 @@ export default function Login() {
       localStorage.setItem('userName', response.userName);
       localStorage.setItem('userType', response.userType);
       if (response.userType === "TellerPerson")
-        window.location.href = "/adminDashboard";
+        window.location.href = "/adminhomepage";
       else if (response.userType === "AccountHolder")
-        window.location.href = "/userDashboard";
+        window.location.href = "/userhomepage";
       else
         window.location.href = "/aaa";
     } else {
