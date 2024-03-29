@@ -1,3 +1,6 @@
+
+import { Link } from "react-router-dom";
+
 export default function AsideBar() {
     //get username from local storage
     const username = localStorage.getItem('username');
@@ -22,7 +25,7 @@ export default function AsideBar() {
                         <div >
                             <ul id="asideItems">
                                 <li className="item">
-                                    <p>Admin Dashboard</p>
+                                    <Link to="/adminDashboard"><p>Admin Dashboard</p></Link>
                                 </li>
                                 <li className="item">
                                     <p>Profile</p>
@@ -37,8 +40,11 @@ export default function AsideBar() {
                                 </li>
                                 <li className="item">
                                     <p>Transactions</p>
-
                                 </li>
+                                <li className="item">
+                                     <Link to="/adminViewUsers"><p>Users</p></Link>
+                                </li>
+
                                 <li className="item" onClick={handleLogout}>
                                     <p>Logout</p>
                                 </li>

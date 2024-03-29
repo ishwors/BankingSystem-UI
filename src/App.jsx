@@ -7,6 +7,7 @@ import Navbar from './components/Navbar.jsx'
 //define teller pages
 import AdminLogin from './pages/admin/Login.jsx'
 import AdminDashboard from './pages/admin/AdminDashboard.jsx'
+import AdminViewUsers from './pages/admin/AdminViewUsers.jsx'
 
 //define teller pages
 import UserDashboard from './pages/UserDashboard.jsx'
@@ -35,6 +36,7 @@ function App() {
 
             {/* teller routes */}
             <Route path="/adminDashboard" element={<AdminDashboard />} />
+            <Route path="/adminViewUsers" element={<AdminViewUsers />} />
 
             {/* user routes */}
             <Route path="/userDashboard" element={<UserDashboard />} />
