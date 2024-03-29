@@ -9,7 +9,6 @@ export default function AdminDashboard() {
         <div>
             <AsideBar />
             <h1>Hello world! This is after Admin Login</h1>
-            {/* <button onClick={submitDisplay}>Submit</button> */}
         </div>
     )
 }
