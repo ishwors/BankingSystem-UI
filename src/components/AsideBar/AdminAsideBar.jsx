@@ -23,13 +23,13 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 
 import AdminDashboard from "../../pages/admin/AdminDashboard.jsx";
-import AdminViewUsers from "../../pages/admin/AdminViewUsers.jsx";
+import AdminUsers from "../../pages/admin/AdminUsers.jsx";
 import Transaction from '../../pages/Transaction.jsx';
 import Swal from "sweetalert2";
+
+import { AdminAsideBarData } from "./AdminAsideBarData.jsx";
 
 
 const drawerWidth = 240;
@@ -163,8 +163,8 @@ export default function AsideBar() {
                     </IconButton>
                 </DrawerHeader>
                 <Divider />
-                <List>
-                    {['Dashboard', 'View Users', 'View Transactions', 'Logout'].map((text, index) => (
+                {/* <List>
+                    {['Dashboard', 'View Users', 'Logout'].map((text, index) => (
                         <ListItem key={text} disablePadding sx={{ display: 'block' }} onClick={handleMenuItemClick}>
                             <ListItemButton
                                 sx={{
@@ -186,13 +186,38 @@ export default function AsideBar() {
                             </ListItemButton>
                         </ListItem>
                     ))}
+                </List> */}
+                <List>
+                    {AdminAsideBarData.map((item, index) => (
+                        <ListItem key={index} disablePadding sx={{ display: 'block' }} onClick={handleMenuItemClick}>
+                            <ListItemButton
+                                sx={{
+                                    minHeight: 48,
+                                    justifyContent: open ? 'initial' : 'center',
+                                    px: 2.5,
+                                }}
+                            >
+                                <ListItemIcon
+                                    sx={{
+                                        minWidth: 0,
+                                        mr: open ? 3 : 'auto',
+                                        justifyContent: 'center',
+                                    }}
+                                >
+                                    {item.icon}
+                                </ListItemIcon>
+                                <ListItemText primary={item.title} sx={{ opacity: open ? 1 : 0 }} />
+                            </ListItemButton>
+                        </ListItem>
+                    ))}
                 </List>
+
                 <Divider />
             </Drawer>
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 {menudata == "Dashboard" && <AdminDashboard />}
-                {menudata == "View Users" && <AdminViewUsers />}
-                {menudata == "View Transactions" && <Transaction/>}
+                {menudata == "Users" && <AdminUsers />}
+                {menudata == "Transactions" && <Transaction/>}
             </Box>
         </Box >
     );

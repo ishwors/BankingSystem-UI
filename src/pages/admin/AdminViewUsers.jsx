@@ -1,7 +1,5 @@
-import React from "react";
-import axios from "axios";
-
-// import AsideBar from '../../components/AsideBar.jsx'
+import * as React from 'react';
+import axios from 'axios';
 
 export default function AdminViewUsers() {
     const [usersData, setUsersData] = React.useState({})

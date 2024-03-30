@@ -9,7 +9,7 @@ import AdminAsideBar from './components/AsideBar/AdminAsideBar.jsx'
 //define teller pages
 import AdminLogin from './pages/admin/Login.jsx'
 import AdminDashboard from './pages/admin/AdminDashboard.jsx'
-import AdminViewUsers from './pages/admin/AdminViewUsers.jsx'
+import AdminUsers from './pages/admin/AdminUsers.jsx'
 
 //define teller pages
 import UserDashboard from './pages/UserDashboard.jsx'
@@ -43,7 +43,7 @@ function App() {
 
             {/* teller routes */}
             <Route path="/adminhomepage" element={<AdminAsideBar />} />
-            <Route path="/adminviewusers" element={<AdminViewUsers />} />
+            <Route path="/adminusers" element={<AdminUsers />} />
             {/* <Route path="/depositMoney" element={<DepositMoneyForm/>}/> */}
 
             {/* user routes */}
