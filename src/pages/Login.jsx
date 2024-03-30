@@ -113,6 +113,13 @@ export default function Login() {
       localStorage.setItem('email', response.email);
       localStorage.setItem('userName', response.userName);
       localStorage.setItem('userType', response.userType);
+      //localStorage.setItem('jwTtoken', response.jwTtoken);
+
+      const sessionID = response.sessionID;
+
+      // Store the session ID in a secure cookie
+      document.cookie = `SessionID=${sessionID}; Secure; SameSite=Strict; Path=/`;
+
       if (response.userType === "TellerPerson")
         window.location.href = "/adminhomepage";
       else if (response.userType === "AccountHolder")

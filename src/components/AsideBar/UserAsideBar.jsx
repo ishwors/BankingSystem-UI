@@ -26,7 +26,7 @@ import ListItemText from '@mui/material/ListItemText';
 
 import UserDashboard from "../../pages/UserDashboard.jsx";
 import Swal from "sweetalert2";
-
+import Transaction from '../../pages/Transaction.jsx';
 import { UserAsideBarData } from "./UserAsideBarData.jsx";
 
 const drawerWidth = 240;
@@ -212,7 +212,7 @@ export default function AsideBar() {
             </Drawer>
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 {menudata == "Dashboard" && <UserDashboard />}
-
+                {menudata == "Transactions" && <Transaction/>}
             </Box>
         </Box >
     );
