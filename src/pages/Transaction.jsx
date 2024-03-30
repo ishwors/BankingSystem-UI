@@ -15,9 +15,11 @@ export default function Transaction() {
     const userId= localStorage.getItem('userId');
     
     useEffect(() => {
-        // Fetch transactions from the backend API
-        fetchTransactions();
-    }, []);
+        // Fetch transactions from the backend API when the component mounts if user is AccountHolder
+        if (userType === 'AccountHolder') {
+            fetchTransactions();
+        }
+    }, [userType]); // Fetch transactions when userType changes
 
     const fetchTransactions = async () => {
         try {
@@ -63,11 +65,31 @@ export default function Transaction() {
         setLoading(false);
     };
 
-    // Function to handle search by account number
-    const handleSearch = () => {
-        // Set the accountNumber state to the input value and then fetch transactions
-        setAccountNumber(searchAccountNumber);
-        fetchTransactions();
+    // Function to handle search by account number for TellerPerson
+    const handleSearch = async () => {
+        try {
+            setLoading(true);
+            // Fetch transactions directly using the searchAccountNumber
+            const response = await fetch(`http://localhost:5224/Transaction/${searchAccountNumber}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error("Failed to fetch transactions");
+            }
+            const data = await response.json();
+            if (!data || !data.length) {
+                throw new Error("Invalid response format: Missing transactions data");
+            }
+            setTransactions(data);
+        } catch (error) {
+            console.error("Error fetching transactions:", error);
+        }
+        setLoading(false);
     };
 
     // JSX to render search input for teller person
