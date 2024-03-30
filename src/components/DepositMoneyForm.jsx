@@ -7,6 +7,26 @@ const DepositMoneyForm = () => {
   const [accountNumber, setAccountNumber] = useState('');
   const [loading, setLoading] = useState(false);
 
+  // Function to retrieve session ID from cookies
+  const getStoredSessionID = () => {
+    // Get all cookies
+    const cookies = document.cookie.split(';');
+  
+    // Iterate through each cookie to find the one containing the session ID
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+  
+      // Check if the cookie starts with 'SessionID='
+      if (cookie.startsWith('SessionID=')) {
+        // Extract and return the session ID from the cookie
+        return cookie.substring('SessionID='.length, cookie.length);
+      }
+    }
+  
+    // Return null if the session ID is not found
+    return null;
+  };  
+
   const handleAmountChange = (e) => {
     setAmount(e.target.value);
   };
@@ -20,12 +40,16 @@ const DepositMoneyForm = () => {
   };
 
   // Retrieve the JWT token from local storage
-  const token = localStorage.getItem('jwTtoken');
+  //const token = localStorage.getItem('jwTtoken');
+
+  
+  const sessionID = getStoredSessionID(); // Call the function here
 
   // Set the Authorization header with the JWT token
   const config = {
     headers: {
-      'Authorization': `Bearer ${token}`
+      //'Authorization': `Bearer ${token}`
+      'Session-ID': sessionID
     }
   };
 

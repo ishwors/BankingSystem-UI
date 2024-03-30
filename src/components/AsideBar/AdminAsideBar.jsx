@@ -28,6 +28,7 @@ import MailIcon from '@mui/icons-material/Mail';
 
 import AdminDashboard from "../../pages/admin/AdminDashboard.jsx";
 import AdminViewUsers from "../../pages/admin/AdminViewUsers.jsx";
+import Transaction from '../../pages/Transaction.jsx';
 import Swal from "sweetalert2";
 
 
@@ -163,7 +164,7 @@ export default function AsideBar() {
                 </DrawerHeader>
                 <Divider />
                 <List>
-                    {['Dashboard', 'View Users', 'Logout'].map((text, index) => (
+                    {['Dashboard', 'View Users', 'View Transactions', 'Logout'].map((text, index) => (
                         <ListItem key={text} disablePadding sx={{ display: 'block' }} onClick={handleMenuItemClick}>
                             <ListItemButton
                                 sx={{
@@ -191,7 +192,7 @@ export default function AsideBar() {
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 {menudata == "Dashboard" && <AdminDashboard />}
                 {menudata == "View Users" && <AdminViewUsers />}
-
+                {menudata == "View Transactions" && <Transaction/>}
             </Box>
         </Box >
     );

@@ -1,13 +1,15 @@
-import React from "react";
-import { Link } from 'react-router-dom';
-import { useState, useEffect } from "react";
-import TransactionTable from "../components/TransactionTable";
+import React, { useState, useEffect } from 'react';
+import DepositMoneyForm from '../components/DepositMoneyForm';
+import WithdrawMoneyForm from '../components/WithdrawMoneyForm';
+import TransactionTable from '../components/TransactionTable';
 
 export default function Transaction() {
     const [transactions, setTransactions] = useState([]);
+    const [loading, setLoading] = useState(false);
     
     //get token from local storage
     const token = localStorage.getItem('jwTtoken');
+    const userType= localStorage.getItem('userType');
     
     useEffect(() => {
         // Fetch transactions from the backend API
@@ -16,6 +18,7 @@ export default function Transaction() {
 
     const fetchTransactions = async () => {
         try {
+            setLoading(true);
             const response = await fetch("http://localhost:5224/Transaction/1000011227405192",{
                 method: 'GET',
                 headers: {
@@ -36,6 +39,20 @@ export default function Transaction() {
         } catch (error) {
             console.error("Error fetching transactions:", error);
         }
+        setLoading(false);
+    };
+
+    const [showDepositForm, setShowDepositForm] = useState(false);
+    const [showWithdrawForm, setShowWithdrawForm] = useState(false);
+
+    const handleDepositClick = () => {
+        setShowDepositForm(true);
+        setShowWithdrawForm(false); // Hide withdrawal form if it's open
+    };
+
+    const handleWithdrawClick = () => {
+        setShowWithdrawForm(true);
+        setShowDepositForm(false); // Hide deposit form if it's open
     };
 
     return (
@@ -47,19 +64,18 @@ export default function Transaction() {
                 ) : (
                     <p>No transactions found</p>
                 )}
-                {localStorage.getItem('userType') === 'TellerPerson' ? (
-                     <div className="form">
-                        <Link to="/depositMoney">
-                            <button className="deposit-button">Deposit Money</button>
-                        </Link>
-                     </div>
-                ) : (
-                    <div className="form">
-                    <Link to="/withdrawMoney">
-                        <button className="deposit-button">Withdraw Money</button>
-                    </Link>
+                {userType === 'TellerPerson' && (
+                    <div className="form-buttons">
+                        <button className="deposit-button" onClick={handleDepositClick}>Deposit Money</button>
                     </div>
                 )}
+                {userType !== 'TellerPerson' && (
+                    <div className="form-buttons">
+                        <button className="deposit-button" onClick={handleWithdrawClick}>Withdraw Money</button>
+                    </div>
+                )}
+                {showDepositForm && <DepositMoneyForm />}
+                {showWithdrawForm && <WithdrawMoneyForm />}
             </div>
         </div>
     );
