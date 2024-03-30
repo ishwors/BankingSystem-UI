@@ -7,6 +7,7 @@ export default function Transaction() {
     const [transactions, setTransactions] = useState([]);
     const [loading, setLoading] = useState(false);
     const [accountNumber, setAccountNumber] = useState('');
+    const [searchAccountNumber, setSearchAccountNumber] = useState('');
     
     //get token from local storage
     const token = localStorage.getItem('jwTtoken');
@@ -62,6 +63,28 @@ export default function Transaction() {
         setLoading(false);
     };
 
+    // Function to handle search by account number
+    const handleSearch = () => {
+        // Set the accountNumber state to the input value and then fetch transactions
+        setAccountNumber(searchAccountNumber);
+        fetchTransactions();
+    };
+
+    // JSX to render search input for teller person
+    const renderSearchInput = () => {
+        return (
+            <div className="form-buttons">
+                <input
+                    type="text"
+                    placeholder="Enter Account Number"
+                    value={searchAccountNumber}
+                    onChange={(e) => setSearchAccountNumber(e.target.value)}
+                />
+                <button className="search-button" onClick={handleSearch}>Search</button>
+            </div>
+        );
+    };
+
     const [showDepositForm, setShowDepositForm] = useState(false);
     const [showWithdrawForm, setShowWithdrawForm] = useState(false);
 
@@ -83,6 +106,9 @@ export default function Transaction() {
         <div className="transaction-container">
             <h1>Transaction Page</h1>
             <div className="form-container">
+                 {/* Render search input for teller person */}
+                 {userType === 'TellerPerson' && renderSearchInput()}
+
                 {transactions && transactions.length > 0 ? (
                     <TransactionTable transactions={transactions} />
                 ) : (
