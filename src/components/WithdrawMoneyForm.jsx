@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const WithdrawMoneyForm = () => {
+const WithdrawMoneyForm = ({ onWithdrawSuccess }) => {
   const [amount, setAmount] = useState(0);
   const [transactionRemarks, setTransactionRemarks] = useState('');
   const [accountNumber, setAccountNumber] = useState('');
   const [atmCardPin, setAtmCardPin] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const [error, setError] = useState('');
 
   const handleAmountChange = (e) => {
     setAmount(e.target.value);
@@ -34,6 +36,7 @@ const WithdrawMoneyForm = () => {
       });
       console.log('Withdrawal successful:', response.data);
       // Optionally, you can handle success here (e.g., show a success message)
+      onWithdrawSuccess();
     } catch (error) {
       console.error('Withdrawal failed:', error);
       // Optionally, you can handle errors here (e.g., show an error message)
@@ -91,6 +94,7 @@ const WithdrawMoneyForm = () => {
             required
           />
         </div>
+        {error && <p className="error-message">{error}</p>}
         <button type="submit" className="submit-btn" disabled={loading}>
           {loading ? 'Loading...' : 'Withdraw'}
         </button>
