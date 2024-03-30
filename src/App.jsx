@@ -44,12 +44,10 @@ function App() {
             {/* teller routes */}
             <Route path="/adminhomepage" element={<AdminAsideBar />} />
             <Route path="/adminusers" element={<AdminUsers />} />
-            {/* <Route path="/depositMoney" element={<DepositMoneyForm/>}/> */}
 
             {/* user routes */}
             <Route path="/userhomepage" element={<UserAsideBar />} />
             {/* <Route path="/userDashboard" element={<UserDashboard />} /> */}
-            {/* <Route path="/withdrawMoney" element={<WithdrawMoneyForm/>}/> */}
 
             <Route path="*" element={<NoPage />} />
           </Routes>

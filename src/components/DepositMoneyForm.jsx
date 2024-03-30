@@ -40,16 +40,12 @@ const DepositMoneyForm = () => {
   };
 
   // Retrieve the JWT token from local storage
-  //const token = localStorage.getItem('jwTtoken');
-
-  
-  const sessionID = getStoredSessionID(); // Call the function here
+  const token = localStorage.getItem('token');
 
   // Set the Authorization header with the JWT token
   const config = {
     headers: {
-      //'Authorization': `Bearer ${token}`
-      'Session-ID': sessionID
+      'Authorization': `Bearer ${token}`
     }
   };
 
@@ -57,12 +53,12 @@ const DepositMoneyForm = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:5224/api/transactions/deposit?accountNumber='+accountNumber+'&loggedInTeller='+localStorage.getItem("userId"), {
+      const response = await axios.post('http://localhost:5224/api/transactions/deposit?accountNumber='+accountNumber, {
         amount,
         transactionRemarks,
       }, {
         withCredentials: true, // Add withCredentials option
-        headers: config.headers // Send session ID in headers
+        headers: config.headers // Send token in headers
       });
       console.log('Deposit successful:', response.data);
       // Optionally, you can handle success here (e.g., show a success message)

@@ -26,6 +26,16 @@ const WithdrawMoneyForm = ({ onWithdrawSuccess }) => {
     setAtmCardPin(e.target.value);
   };
 
+  // Retrieve the JWT token from local storage
+  const token = localStorage.getItem('token');
+
+  // Set the Authorization header with the JWT token
+  const config = {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -33,6 +43,9 @@ const WithdrawMoneyForm = ({ onWithdrawSuccess }) => {
       const response = await axios.post('http://localhost:5224/api/transactions/withdraw?accountNumber='+accountNumber+'&atmCardPin='+atmCardPin, {
         amount,
         transactionRemarks
+      }, {
+        withCredentials: true, // Add withCredentials option
+        headers: config.headers // Send token in headers
       });
       console.log('Withdrawal successful:', response.data);
       // Optionally, you can handle success here (e.g., show a success message)
