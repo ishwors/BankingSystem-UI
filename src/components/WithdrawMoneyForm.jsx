@@ -30,7 +30,7 @@ const WithdrawMoneyForm = ({ onWithdrawSuccess }) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:5224/Transaction/withdraw?accountNumber='+accountNumber+'&atmCardPin='+atmCardPin, {
+      const response = await axios.post('http://localhost:5224/api/transactions/withdraw?accountNumber='+accountNumber+'&atmCardPin='+atmCardPin, {
         amount,
         transactionRemarks
       });

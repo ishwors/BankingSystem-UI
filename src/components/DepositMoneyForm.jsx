@@ -57,10 +57,13 @@ const DepositMoneyForm = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:5224/Transaction/deposit?accountNumber='+accountNumber, {
+      const response = await axios.post('http://localhost:5224/api/transactions/deposit?accountNumber='+accountNumber+'&loggedInTeller='+localStorage.getItem("userId"), {
         amount,
-        transactionRemarks
-      }, config);
+        transactionRemarks,
+      }, {
+        withCredentials: true, // Add withCredentials option
+        headers: config.headers // Send session ID in headers
+      });
       console.log('Deposit successful:', response.data);
       // Optionally, you can handle success here (e.g., show a success message)
     } catch (error) {
@@ -73,7 +76,9 @@ const DepositMoneyForm = () => {
       setTransactionRemarks('');
       setAccountNumber('');
     }
-  };
+};
+// Example logging in frontend code
+console.log('Session cookie:', document.cookie);
 
   return (
     <div className="withdraw-container">

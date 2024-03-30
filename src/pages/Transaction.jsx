@@ -42,7 +42,7 @@ export default function Transaction() {
 
             setAccountNumber(accountData.accountNumber);
 
-            const response = await fetch("http://localhost:5224/Transaction/"+accountData.accountNumber,{
+            const response = await fetch("http://localhost:5224/api/transactions/"+accountData.accountNumber,{
                 method: 'GET',
                 headers: {
                   'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ export default function Transaction() {
         try {
             setLoading(true);
             // Fetch transactions directly using the searchAccountNumber
-            const response = await fetch(`http://localhost:5224/Transaction/${searchAccountNumber}`, {
+            const response = await fetch(`http://localhost:5224/api/transactions/${searchAccountNumber}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
