@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-import AsideBar from '../../components/AsideBar.jsx'
+// import AsideBar from '../../components/AsideBar.jsx'
 
 export default function AdminViewUsers() {
     const [usersData, setUsersData] = React.useState({})
@@ -24,7 +24,7 @@ export default function AdminViewUsers() {
 
     return (
         <div>
-            <AsideBar />
+            {/* <AsideBar /> */}
             <h1>Hello world! This is to view users</h1>
             <table>
                 <thead>
