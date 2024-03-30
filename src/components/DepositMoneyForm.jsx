@@ -7,26 +7,6 @@ const DepositMoneyForm = () => {
   const [accountNumber, setAccountNumber] = useState('');
   const [loading, setLoading] = useState(false);
 
-  // Function to retrieve session ID from cookies
-  const getStoredSessionID = () => {
-    // Get all cookies
-    const cookies = document.cookie.split(';');
-  
-    // Iterate through each cookie to find the one containing the session ID
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim();
-  
-      // Check if the cookie starts with 'SessionID='
-      if (cookie.startsWith('SessionID=')) {
-        // Extract and return the session ID from the cookie
-        return cookie.substring('SessionID='.length, cookie.length);
-      }
-    }
-  
-    // Return null if the session ID is not found
-    return null;
-  };  
-
   const handleAmountChange = (e) => {
     setAmount(e.target.value);
   };
@@ -40,16 +20,12 @@ const DepositMoneyForm = () => {
   };
 
   // Retrieve the JWT token from local storage
-  //const token = localStorage.getItem('jwTtoken');
-
-  
-  const sessionID = getStoredSessionID(); // Call the function here
+  const token = localStorage.getItem('token');
 
   // Set the Authorization header with the JWT token
   const config = {
     headers: {
-      //'Authorization': `Bearer ${token}`
-      'Session-ID': sessionID
+      'Authorization': `Bearer ${token}`
     }
   };
 
@@ -57,12 +33,12 @@ const DepositMoneyForm = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:5224/api/transactions/deposit?accountNumber='+accountNumber+'&loggedInTeller='+localStorage.getItem("userId"), {
+      const response = await axios.post('http://localhost:5224/api/transactions/deposit?accountNumber='+accountNumber, {
         amount,
         transactionRemarks,
       }, {
         withCredentials: true, // Add withCredentials option
-        headers: config.headers // Send session ID in headers
+        headers: config.headers // Send token in headers
       });
       console.log('Deposit successful:', response.data);
       // Optionally, you can handle success here (e.g., show a success message)
@@ -77,8 +53,6 @@ const DepositMoneyForm = () => {
       setAccountNumber('');
     }
 };
-// Example logging in frontend code
-console.log('Session cookie:', document.cookie);
 
   return (
     <div className="withdraw-container">

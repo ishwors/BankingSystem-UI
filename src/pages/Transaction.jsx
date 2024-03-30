@@ -10,7 +10,7 @@ export default function Transaction() {
     const [searchAccountNumber, setSearchAccountNumber] = useState('');
     
     //get token from local storage
-    const token = localStorage.getItem('jwTtoken');
+    const token = localStorage.getItem('token');
     const userType= localStorage.getItem('userType');
     const userId= localStorage.getItem('userId');
     
@@ -29,7 +29,8 @@ export default function Transaction() {
                 headers: {
                   'Content-Type': 'application/json',
                   'Authorization': 'Bearer ' + token
-                }
+                },
+                credentials: 'include'
                 });
             if (!accountResponse.ok) {
                 throw new Error("Failed to fetch accounts");
@@ -47,7 +48,8 @@ export default function Transaction() {
                 headers: {
                   'Content-Type': 'application/json',
                   'Authorization': 'Bearer ' + token
-                }
+                },
+                credentials: 'include'
                 });
             
             if (!response.ok) {
@@ -75,7 +77,8 @@ export default function Transaction() {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + token
-                }
+                },
+                credentials: 'include'
             });
             
             if (!response.ok) {
