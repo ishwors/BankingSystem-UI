@@ -89,7 +89,7 @@ const KycForm = ({ userId }) => {
                     <label>Permanent Address:</label>
                     <input type="text" name="PermanentAddress" value={formData.PermanentAddress} onChange={handleChange} />
                 </div>
-                <div style={{ display: 'flex', flexDirection:'column', margin:'10px 0px', rowGap:'10px',
+                <div style={{ display: 'flex', flexDirection:'column', margin:'10px 0px 20px 0px', rowGap:'10px',
                                 justifyContent: 'space-between',alignContent:'center',alignItems:'center'}}>
                     <label>User Image:</label>
                     <input type="file" className="fileinputbutton" name="UserImageFile" onChange={handleFileChange} />

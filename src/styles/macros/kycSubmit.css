@@ -8,12 +8,12 @@
   height: auto;
   margin: 0 auto;
   border: 1px solid grey;
-  border-radius: 8px;
+  border-radius: 15px;
   padding: 20px;
   text-align: center;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   font-weight: bold;
 }
 .kycSubmitPage .label {
@@ -23,4 +23,7 @@
 .kycSubmitPage .submit-btn {
   color: var(--grey-900);
   background-color: var(--primary-green-light);
+}
+.kycSubmitPage .submit-btn:hover::after {
+  background-color: var(--primary-green-main);
 }/*# sourceMappingURL=kycSubmit.css.map */
