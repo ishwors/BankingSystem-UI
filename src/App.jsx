@@ -10,7 +10,8 @@ import AdminLogin from './pages/admin/Login.jsx'
 import AdminUsers from './pages/admin/AdminUsers.jsx'
 
 //define teller pages
-
+import UserDashboard from './pages/UserDashboard.jsx'
+import KycPage from './pages/Kyc.jsx'; // kyc page
 import Home from './pages/Home.jsx'
 import NoPage from './pages/NoPage.jsx'
 import Login from './pages/Login.jsx'
@@ -41,14 +42,13 @@ function App() {
             <Route path="/adminhomepage" element={<AdminAsideBar />} />
             <Route path="/adminusers" element={<AdminUsers />} />            
             <Route path="/adminaccounts" element={<Account />} />
-            {/* <Route path="/depositMoney" element={<DepositMoneyForm/>}/> */}
 
             {/* user routes */}
             <Route path="/userhomepage" element={<UserAsideBar />} />
             {/* <Route path="/userDashboard" element={<UserDashboard />} /> */}
-            {/* <Route path="/withdrawMoney" element={<WithdrawMoneyForm/>}/> */}
 
             <Route path="*" element={<NoPage />} />
+            <Route path="/kyc" element={<KycPage/>} /> 
           </Routes>
         </div>
       </Router>

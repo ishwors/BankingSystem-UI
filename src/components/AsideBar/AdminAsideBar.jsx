@@ -31,7 +31,7 @@ import Account from '../accounts/index.jsx';
 import Swal from "sweetalert2";
 
 import { AdminAsideBarData } from "./AdminAsideBarData.jsx";
-
+import axios from 'axios';
 
 const drawerWidth = 240;
 
@@ -113,7 +113,7 @@ export default function AsideBar() {
         setOpen(false);
     };
 
-    const handleMenuItemClick = (e) => {
+    const handleMenuItemClick = async (e) => {
         const text = e.currentTarget.querySelector('span').textContent;
 
         if (text != "Logout") {
@@ -121,8 +121,12 @@ export default function AsideBar() {
             console.log(text);
         }
         else {
-            localStorage.clear(); // Clear local storage
-            Swal.fire({
+            try {
+                // Call the logout endpoint on the backend
+                await axios.post('http://localhost:5224/api/users/logout');
+
+                localStorage.clear(); // Clear local storage
+                Swal.fire({
                 position: "top-end",
                 icon: "success",
                 title: "Logout Successful",
@@ -132,6 +136,10 @@ export default function AsideBar() {
             setTimeout(() => {
                 window.location.href = "/"; // Redirect to home page
             }, 2000);
+            }
+            catch (error) {
+                console.error('Logout failed:', error);
+            }
         }
     };
 
