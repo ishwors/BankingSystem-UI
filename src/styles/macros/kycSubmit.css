@@ -1,0 +1,26 @@
+.kycSubmitPage {
+  display: flex;
+  background: transparent;
+  width: -moz-max-content;
+  width: max-content;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  height: auto;
+  margin: 0 auto;
+  border: 1px solid grey;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+}
+.kycSubmitPage .label {
+  display: flex;
+  align-items: flex-start;
+}
+.kycSubmitPage .submit-btn {
+  color: var(--grey-900);
+  background-color: var(--primary-green-light);
+}/*# sourceMappingURL=kycSubmit.css.map */
