@@ -50,7 +50,7 @@ function App() {
             {/* <Route path="/userDashboard" element={<UserDashboard />} /> */}
 
             <Route path="*" element={<NoPage />} />
-            <Route path="/kyc" element={<KycPage />} /> 
+            <Route path="/kyc" element={<KycPage/>} /> 
           </Routes>
         </div>
       </Router>
