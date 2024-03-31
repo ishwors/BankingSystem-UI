@@ -16,16 +16,6 @@ export default function AdminViewUsers() {
         }
     };
 
-    // Retrieve the JWT token from local storage
-    const token = localStorage.getItem('token');
-
-    // Set the Authorization header with the JWT token
-    const config = {
-        headers: {
-        'Authorization': `Bearer ${token}`
-        }
-    };
-
     console.log("AdminViewUsers rendered");
     React.useEffect(() => {
         console.log("Fetching users...");
