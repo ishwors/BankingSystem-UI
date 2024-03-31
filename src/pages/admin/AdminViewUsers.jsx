@@ -22,7 +22,7 @@ export default function AdminViewUsers() {
                 const response = await axios.get('http://localhost:5224/api/users',{
                     withCredentials: true, // Add withCredentials option
                     headers: config.headers // Send token in headers
-                  });
+                });
                 if (response.status === 200) {
                     setUsersData(response.data);
                 }

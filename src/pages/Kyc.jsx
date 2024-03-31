@@ -6,6 +6,7 @@ const KycPage = () => {
         <div>
             <h1>KYC Document Submission Page</h1>
             <KycForm /> {/* Render the KycForm component */}
+            
         </div>
     );
 };
