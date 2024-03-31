@@ -9,7 +9,7 @@ export default function AdminViewUsers() {
         console.log("Fetching users...");
         const getUsers = async () => {
             try {
-                const response = await axios.get('http://localhost:5224/api/users');
+                const response = await axios.get("http://localhost:5224/api/users");
                 if (response.status === 200) {
                     setUsersData(response.data);
                 }

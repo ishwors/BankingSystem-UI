@@ -71,7 +71,7 @@ export default function Login() {
   const loginUser = async (credentials) => {
     try {
       //console.log('credentials:', credentials);
-      const response = await fetch('http://localhost:5224/api/users/login', {
+      const response = await fetch("http://localhost:5224/api/users/login", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -19,7 +19,7 @@ export default function Transaction() {
     const fetchTransactions = async () => {
         try {
             setLoading(true);
-            const response = await fetch("http://localhost:5224/Transaction/1000011227405192",{
+            const response = await fetch("http://localhost:5224/Transaction/1000014891139243",{
                 method: 'GET',
                 headers: {
                   'Content-Type': 'application/json',

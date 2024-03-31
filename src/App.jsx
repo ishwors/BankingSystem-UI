@@ -2,17 +2,14 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 //define components
-import Navbar from './components/Navbar.jsx'
 import UserAsideBar from './components/AsideBar/UserAsideBar.jsx'
 import AdminAsideBar from './components/AsideBar/AdminAsideBar.jsx'
 
 //define teller pages
 import AdminLogin from './pages/admin/Login.jsx'
-import AdminDashboard from './pages/admin/AdminDashboard.jsx'
 import AdminUsers from './pages/admin/AdminUsers.jsx'
 
 //define teller pages
-import UserDashboard from './pages/UserDashboard.jsx'
 
 import Home from './pages/Home.jsx'
 import NoPage from './pages/NoPage.jsx'
@@ -23,8 +20,7 @@ import Transaction from './pages/Transaction.jsx';
 //define css files
 import './index.css'
 import './styles/global.scss'
-import WithdrawMoneyForm from './components/WithdrawMoneyForm.jsx';
-import DepositMoneyForm from './components/DepositMoneyForm.jsx';
+import Account from './components/accounts/index.jsx'; 
 
 
 function App() {
@@ -43,7 +39,8 @@ function App() {
 
             {/* teller routes */}
             <Route path="/adminhomepage" element={<AdminAsideBar />} />
-            <Route path="/adminusers" element={<AdminUsers />} />
+            <Route path="/adminusers" element={<AdminUsers />} />            
+            <Route path="/adminaccounts" element={<Account />} />
             {/* <Route path="/depositMoney" element={<DepositMoneyForm/>}/> */}
 
             {/* user routes */}

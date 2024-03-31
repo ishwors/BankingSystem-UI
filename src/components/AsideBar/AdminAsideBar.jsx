@@ -27,6 +27,7 @@ import ListItemText from '@mui/material/ListItemText';
 import AdminDashboard from "../../pages/admin/AdminDashboard.jsx";
 import AdminUsers from "../../pages/admin/AdminUsers.jsx";
 import Transaction from '../../pages/Transaction.jsx';
+import Account from '../accounts/index.jsx';
 import Swal from "sweetalert2";
 
 import { AdminAsideBarData } from "./AdminAsideBarData.jsx";
@@ -216,6 +217,7 @@ export default function AsideBar() {
             </Drawer>
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 {menudata == "Dashboard" && <AdminDashboard />}
+                {menudata == "Account" && <Account />}
                 {menudata == "Users" && <AdminUsers />}
                 {menudata == "Transactions" && <Transaction/>}
             </Box>
