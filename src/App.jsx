@@ -9,7 +9,7 @@ import AdminAsideBar from './components/AsideBar/AdminAsideBar.jsx'
 //define teller pages
 import AdminLogin from './pages/admin/Login.jsx'
 import AdminDashboard from './pages/admin/AdminDashboard.jsx'
-import AdminViewUsers from './pages/admin/AdminViewUsers.jsx'
+import AdminUsers from './pages/admin/AdminUsers.jsx'
 
 //define teller pages
 import UserDashboard from './pages/UserDashboard.jsx'
@@ -17,11 +17,14 @@ import KycPage from './pages/Kyc.jsx'; // kyc page
 import Home from './pages/Home.jsx'
 import NoPage from './pages/NoPage.jsx'
 import Login from './pages/Login.jsx'
+import Transaction from './pages/Transaction.jsx';
 
 
 //define css files
 import './index.css'
 import './styles/global.scss'
+import WithdrawMoneyForm from './components/WithdrawMoneyForm.jsx';
+import DepositMoneyForm from './components/DepositMoneyForm.jsx';
 
 
 function App() {
@@ -36,9 +39,11 @@ function App() {
             <Route path="/@adminLogin" element={<AdminLogin />} />
             <Route path="/login" element={<Login />} />
 
+            <Route path="/transaction" element={<Transaction/>}/>
+
             {/* teller routes */}
             <Route path="/adminhomepage" element={<AdminAsideBar />} />
-            <Route path="/adminviewusers" element={<AdminViewUsers />} />
+            <Route path="/adminusers" element={<AdminUsers />} />
 
             {/* user routes */}
             <Route path="/userhomepage" element={<UserAsideBar />} />

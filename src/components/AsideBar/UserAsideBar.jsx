@@ -26,8 +26,9 @@ import ListItemText from '@mui/material/ListItemText';
 
 import UserDashboard from "../../pages/UserDashboard.jsx";
 import Swal from "sweetalert2";
-
+import Transaction from '../../pages/Transaction.jsx';
 import { UserAsideBarData } from "./UserAsideBarData.jsx";
+import axios from 'axios';
 
 const drawerWidth = 240;
 
@@ -109,7 +110,7 @@ export default function AsideBar() {
         setOpen(false);
     };
 
-    const handleMenuItemClick = (e) => {
+    const handleMenuItemClick = async (e) => {
         const text = e.currentTarget.querySelector('span').textContent;
 
         if (text != "Logout") {
@@ -117,8 +118,12 @@ export default function AsideBar() {
             console.log(text);
         }
         else {
-            localStorage.clear(); // Clear local storage
-            Swal.fire({
+            try {
+                // Call the logout endpoint on the backend
+                await axios.post('http://localhost:5224/api/users/logout');
+
+                localStorage.clear(); // Clear local storage
+                Swal.fire({
                 position: "top-end",
                 icon: "success",
                 title: "Logout Successful",
@@ -128,6 +133,10 @@ export default function AsideBar() {
             setTimeout(() => {
                 window.location.href = "/"; // Redirect to home page
             }, 2000);
+            }
+            catch (error) {
+                console.error('Logout failed:', error);
+            }
         }
     };
 
@@ -212,7 +221,7 @@ export default function AsideBar() {
             </Drawer>
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 {menudata == "Dashboard" && <UserDashboard />}
-
+                {menudata == "Transactions" && <Transaction/>}
             </Box>
         </Box >
     );

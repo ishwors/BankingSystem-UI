@@ -76,7 +76,8 @@ export default function Login() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ UserName: credentials.username, Password: credentials.password })
+        body: JSON.stringify({ UserName: credentials.username, Password: credentials.password }),
+        credentials: 'include'
       });
 
       if (response.status === 200) {
@@ -113,6 +114,13 @@ export default function Login() {
       localStorage.setItem('email', response.email);
       localStorage.setItem('userName', response.userName);
       localStorage.setItem('userType', response.userType);
+      localStorage.setItem('token', response.token);
+
+      const sessionID = response.sessionID;
+
+      // Store the session ID in a secure cookie
+      document.cookie = `SessionID=${sessionID}; Secure; SameSite=Strict; Path=/`;
+
       if (response.userType === "TellerPerson")
         window.location.href = "/adminhomepage";
       else if (response.userType === "AccountHolder")

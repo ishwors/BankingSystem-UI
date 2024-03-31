@@ -1,17 +1,28 @@
-import React from "react";
-import axios from "axios";
-
-// import AsideBar from '../../components/AsideBar.jsx'
+import * as React from 'react';
+import axios from 'axios';
 
 export default function AdminViewUsers() {
     const [usersData, setUsersData] = React.useState({})
+
+    // Retrieve the JWT token from local storage
+    const token = localStorage.getItem('token');
+
+    // Set the Authorization header with the JWT token
+    const config = {
+        headers: {
+        'Authorization': `Bearer ${token}`
+        }
+    };
 
     console.log("AdminViewUsers rendered"); // Check if the component is rendered multiple times
     React.useEffect(() => {
         console.log("Fetching users...");
         const getUsers = async () => {
             try {
-                const response = await axios.get('http://localhost:5224/api/users');
+                const response = await axios.get('http://localhost:5224/api/users',{
+                    withCredentials: true, // Add withCredentials option
+                    headers: config.headers // Send token in headers
+                  });
                 if (response.status === 200) {
                     setUsersData(response.data);
                 }
