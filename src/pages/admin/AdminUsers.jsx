@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import AdminViewUsers from "./AdminViewUsers";
 import AdminRegisterUser from "./AdminRegisterUser";
 
+
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -21,7 +22,8 @@ function CustomTabPanel(props) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          {/* typography component must be set to div as by default it will take p and under p other divs will be rendered that will show warning of mismatch hierarchy as p cant be parent of div*/}
+          <Typography component="div">{children}</Typography>
         </Box>
       )}
     </div>
@@ -41,7 +43,7 @@ function a11yProps(index) {
   };
 }
 
-export default function BasicTabs() {
+export default function AdminUsers() {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {

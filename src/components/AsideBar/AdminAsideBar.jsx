@@ -160,7 +160,8 @@ export default function AsideBar() {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div">
+                    {/* <Typography variant="h6" noWrap component="div"> */}
+                    <Typography noWrap component="span">
                         Aloi Bank
                     </Typography>
                 </Toolbar>
@@ -224,10 +225,13 @@ export default function AsideBar() {
                 <Divider />
             </Drawer>
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-                {menudata == "Dashboard" && <AdminDashboard />}
+                <div>
+
+                    {menudata == "Dashboard" && <AdminDashboard />}
                 {menudata == "Account" && <Account />}
-                {menudata == "Users" && <AdminUsers />}
-                {menudata == "Transactions" && <Transaction/>}
+                    {menudata == "Users" && <AdminUsers />}
+                {menudata == "Transactions" && <Transaction/>}                </div>
+
             </Box>
         </Box >
     );
