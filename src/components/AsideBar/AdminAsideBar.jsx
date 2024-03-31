@@ -27,6 +27,7 @@ import ListItemText from '@mui/material/ListItemText';
 import AdminDashboard from "../../pages/admin/AdminDashboard.jsx";
 import AdminUsers from "../../pages/admin/AdminUsers.jsx";
 import Transaction from '../../pages/Transaction.jsx';
+import Account from '../accounts/index.jsx';
 import Swal from "sweetalert2";
 
 import { AdminAsideBarData } from "./AdminAsideBarData.jsx";
@@ -159,7 +160,8 @@ export default function AsideBar() {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div">
+                    {/* <Typography variant="h6" noWrap component="div"> */}
+                    <Typography noWrap component="span">
                         Aloi Bank
                     </Typography>
                 </Toolbar>
@@ -223,9 +225,13 @@ export default function AsideBar() {
                 <Divider />
             </Drawer>
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-                {menudata == "Dashboard" && <AdminDashboard />}
-                {menudata == "Users" && <AdminUsers />}
-                {menudata == "Transactions" && <Transaction/>}
+                <div>
+
+                    {menudata == "Dashboard" && <AdminDashboard />}
+                {menudata == "Account" && <Account />}
+                    {menudata == "Users" && <AdminUsers />}
+                {menudata == "Transactions" && <Transaction/>}                </div>
+
             </Box>
         </Box >
     );
