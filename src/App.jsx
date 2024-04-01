@@ -21,7 +21,8 @@ import Transaction from './pages/Transaction.jsx';
 //define css files
 import './index.css'
 import './styles/global.scss'
-import Account from './components/accounts/index.jsx'; 
+import AccountTable from './components/accounts/AccountTable.jsx'; 
+import Account from './components/accounts/index.jsx';
 
 
 function App() {
@@ -41,7 +42,8 @@ function App() {
             {/* teller routes */}
             <Route path="/adminhomepage" element={<AdminAsideBar />} />
             <Route path="/adminusers" element={<AdminUsers />} />            
-            <Route path="/adminaccounts" element={<Account />} />
+            {/* <Route path="/adminaccounts" element={<AccountTable />} /> */}
+            <Route path="/account-details" element={<Account />} />
 
             {/* user routes */}
             <Route path="/userhomepage" element={<UserAsideBar />} />

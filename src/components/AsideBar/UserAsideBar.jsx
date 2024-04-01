@@ -23,7 +23,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-
+import Account from '../accounts/index.jsx';
 import UserDashboard from "../../pages/UserDashboard.jsx";
 import Swal from "sweetalert2";
 import Transaction from '../../pages/Transaction.jsx';
@@ -224,6 +224,7 @@ export default function AsideBar() {
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 {menudata == "Dashboard" && <UserDashboard />}
                 {menudata == "Transactions" && <Transaction/>}
+                {menudata == "Accounts" && <Account />}
                 {menudata == "KYC" && <KycPage/>}   
             </Box>
         </Box >
