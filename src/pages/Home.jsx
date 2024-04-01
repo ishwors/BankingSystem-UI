@@ -13,9 +13,13 @@ export default function Home() {
     //     return await response.json();
     // };
     return (
-        <div>       
+        <div className="container">       
           <Navbar />
-            <h1>Hello world! This is from Home page</h1>
+            {/* <h1>Hello world! This is from Home page</h1> */}
+            <div className="img-container">
+                    <img className="img" src="/assets/image/money.jpg"></img>
+            </div>
+            
             {/* <button onClick={submitDisplay}>Submit</button> */}
         </div>
     )

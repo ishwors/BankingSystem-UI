@@ -127,15 +127,15 @@ export default function AsideBar() {
 
                 localStorage.clear(); // Clear local storage
                 Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Logout Successful",
-                showConfirmButton: false,
-                timer: 2000
-            });
-            setTimeout(() => {
-                window.location.href = "/"; // Redirect to home page
-            }, 2000);
+                    position: "top-end",
+                    icon: "success",
+                    title: "Logout Successful",
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                setTimeout(() => {
+                    window.location.href = "/"; // Redirect to home page
+                }, 2000);
             }
             catch (error) {
                 console.error('Logout failed:', error);
@@ -226,13 +226,12 @@ export default function AsideBar() {
             </Drawer>
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 <div>
-
                     {menudata == "Dashboard" && <AdminDashboard />}
-                {menudata == "Account" && <Account />}
+                    {menudata == "Accounts" && <Account />}
                     {menudata == "Users" && <AdminUsers />}
-                {menudata == "Transactions" && <Transaction/>}                </div>
-
+                    {menudata == "Transactions" && <Transaction />}              
+                </div>
             </Box>
-        </Box >
+        </Box>
     );
 }

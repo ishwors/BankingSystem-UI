@@ -10,8 +10,9 @@ nav {
     flex-wrap: wrap;
     // border-bottom: 1px solid black;
     height: 80px;
-    width: 100%;
+    width: calc(100% - 80px);
     align-items: center;
+    margin: auto;
 }
 
 #navItems {
@@ -38,4 +39,14 @@ div>ul>li>a {
 
 #navLogo {
     width: 150px;
+}
+
+.log-btn {
+
+    a,
+    span {
+        color: white;
+        font-weight: 600;
+        text-decoration: none !important;
+    }
 }

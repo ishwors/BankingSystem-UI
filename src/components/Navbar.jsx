@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import Button from '@mui/material/Button';
 const userType = localStorage.getItem('userType');
 
 
@@ -11,7 +11,7 @@ const handleLogout = () => {
 export default function Navbar() {
     return (
         <nav>
-            <div id="navContainer">
+            <div id="navContainer" className="nav-container">
                 <div>
                     <img src="/assets/image/AloiBank-logo_full-h.png" alt="Logo" id="navLogo" />
                 </div>
@@ -44,18 +44,20 @@ export default function Navbar() {
                             <p>Contacts</p>
                             {/* <Link to="/search"><i class="fa-solid fa-magnifying-glass fa-xl" style={{ color: "#ffffff", }}></i></Link> */}
                         </li>
-                        {userType === null ? (
-                            <li className="item">
-                                <Link to="/login"><p>Login</p></Link>
-                            </li>
-                        ) : (
-                            <li className="item" onClick={handleLogout}>
-                                <p>Logout</p>
-                            </li>)}
+
                     </ul>
                 </div>
                 <div>
-                    <p>Testimonials</p>
+                    <Button variant="contained" className="log-btn">
+                        {userType === null ? (
+                            <span >
+                                <Link to="/login">Login</Link>
+                            </span>
+                        ) : (
+                            <span onClick={handleLogout}>
+                                Logout
+                            </span>)}
+                    </Button>
                 </div>
             </div>
         </nav>
