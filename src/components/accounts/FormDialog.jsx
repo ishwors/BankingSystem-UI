@@ -8,10 +8,9 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import axios from "axios";
 
-const FormDialog = ({ open, onClose, onOpen }) => {
+const FormDialog = ({ open, onClose, onOpen, account, accountNumber }) => {
   const [atmCardPin, setAtmPin] = React.useState("");
-  const [accountNumber, setAccountNumber] = React.useState("");
-  const [accountDetails, setAccountDetails] = React.useState([]);
+  const [accountNumberState, setAccountNumber] = React.useState(accountNumber || "");
 
   const handleChange = (event) => {
     setAtmPin(event.target.value);
@@ -41,7 +40,6 @@ const FormDialog = ({ open, onClose, onOpen }) => {
         headers: config.headers // Send token in headers
       });
       console.log("Pin reset successful:", response.data);
-      refreshAccount(); // Refresh the account after successful submission
     } catch (error) {
       console.error("Pin reset failed:", error);
     } finally {
@@ -51,19 +49,6 @@ const FormDialog = ({ open, onClose, onOpen }) => {
     }
   };
 
-  // Function to refresh account data
-  const refreshAccount = async () => {
-    try {
-      const response = await fetch("http://localhost:5224/api/accounts?accountNumber=" + accountNumber, {
-        withCredentials: true, // Add withCredentials option
-        headers: config.headers // Send token in headers
-      });
-      const data = await response.json();
-      setAccountDetails(data);
-    } catch (error) {
-      console.error('Error refreshing account:', error);
-    }
-  };
 
   return (
     <Dialog
@@ -78,7 +63,7 @@ const FormDialog = ({ open, onClose, onOpen }) => {
       <DialogTitle>Change ATM Pin</DialogTitle>
       <DialogContent>
         <DialogContentText>
-          To change ATM pin, please enter email and ATM pin number.
+          To change ATM pin, please verify your account number and enter new ATM pin number.
         </DialogContentText>
         <TextField
           autoFocus
@@ -88,6 +73,7 @@ const FormDialog = ({ open, onClose, onOpen }) => {
           name="accountNumber"
           label="Account Number"
           type="text"
+          value={account?.accountNumber}
           fullWidth
           onChange={handleAccountNumberChange}
         />
