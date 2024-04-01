@@ -1,9 +1,12 @@
-import  { useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
+import Button from '@material-ui/core/Button';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import CustomAlert from './customComponent/CustomAlert';
 
-const KycForm = () => {
+const KycForm = ({ userId }) => {
     const [formData, setFormData] = useState({
-        UserId: '',
+        UserId: localStorage.getItem('userId') || '', 
         FatherName: '',
         MotherName: '',
         GrandFatherName: '',
@@ -11,6 +14,9 @@ const KycForm = () => {
         UserImageFile: null,
         CitizenshipImageFile: null
     });
+
+    const [isAlertVisible, setIsAlertVisible] = useState(false);
+    const [alertMessage, setAlertMessage] = useState('');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -22,17 +28,21 @@ const KycForm = () => {
         setFormData({ ...formData, [name]: files[0] });
     };
 
-    
+    const showAlert = (message) => {
+        setAlertMessage(message);
+        setIsAlertVisible(true);
+    };
+
+    const closeAlert = () => {
+        setIsAlertVisible(false);
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const formDataToSend = new FormData();
             for (const key in formData) {
-                if (formData[key] instanceof File) {
-                    formDataToSend.append(key, formData[key]);
-                } else {
-                    formDataToSend.append(key, formData[key]);
-                }
+                formDataToSend.append(key, formData[key]);
             }
             const response = await axios.post('http://localhost:5224/api/kycdocument', formDataToSend, {
                 headers: {
@@ -40,9 +50,8 @@ const KycForm = () => {
                 }
             });
             console.log('KYC document added successfully:', response.data);
-            // Reset form after successful submission
             setFormData({
-                UserId: '',
+                UserId: userId,
                 FatherName: '',
                 MotherName: '',
                 GrandFatherName: '',
@@ -50,18 +59,19 @@ const KycForm = () => {
                 UserImageFile: null,
                 CitizenshipImageFile: null
             });
+            showAlert("KYC document added successfully");
         } catch (error) {
             console.error('Error adding KYC document:', error);
+            showAlert("Ahh, something went wrong. Please try again.");
         }
     };
 
     return (
-        <div>
-            <h2>Add KYC Document</h2>
+        <div className='kycSubmitPage'>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>UserId:</label>
-                    <input type="text" name="UserId" value={formData.UserId} onChange={handleChange} />
+                    <input type="text" name="UserId" value={formData.UserId} onChange={handleChange} disabled />
                 </div>
                 <div>
                     <label>Father Name:</label>
@@ -79,15 +89,17 @@ const KycForm = () => {
                     <label>Permanent Address:</label>
                     <input type="text" name="PermanentAddress" value={formData.PermanentAddress} onChange={handleChange} />
                 </div>
-                <div>
+                <div style={{ display: 'flex', flexDirection:'column', margin:'10px 0px', rowGap:'10px',
+                                justifyContent: 'space-between',alignContent:'center',alignItems:'center'}}>
                     <label>User Image:</label>
-                    <input type="file" name="UserImageFile" onChange={handleFileChange} />
-                </div>
-                <div>
+                    <input type="file" className="fileinputbutton" name="UserImageFile" onChange={handleFileChange} />
+
                     <label>Citizenship Image:</label>
-                    <input type="file" name="CitizenshipImageFile" onChange={handleFileChange} />
+                    <input type="file" className="fileinputbutton" name="CitizenshipImageFile" onChange={handleFileChange} />
                 </div>
-                <button type="submit">Submit</button>
+                <Button type="submit" className='submit-btn' variant="contained" endIcon={<CloudUploadIcon />}>Submit KYC</Button>
+
+                {isAlertVisible && <CustomAlert message={alertMessage} onClose={closeAlert} />}
             </form>
         </div>
     );

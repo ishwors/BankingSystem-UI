@@ -27,7 +27,7 @@ import axios from 'axios';
 
 
 export default function UserCard({ userData }) {
-    const [expanded, setExpanded] = React.useState(false);
+    //  const [expanded, setExpanded] = React.useState(false);
 
     const handleInfoClick = () => {
         Swal.fire({
@@ -49,6 +49,64 @@ export default function UserCard({ userData }) {
         });
     };
 
+    const handleEditClick = () => {
+        console.log('Edit clicked');
+        console.log(userData);
+        const dateOfBirth = new Date(userData.dateOfBirth).toISOString().split('T')[0];
+
+        Swal.fire({
+            title: "Update information",
+            html: `
+            <div style="text-align: left; font-size: 1rem; margin-left: 30px">
+            <span style="display: inline-block; width: 100px;">UserName:</span> <input id="userName" class="swal2-input" value="${userData.userName}" ><br>
+            <span style="display: inline-block; width: 100px;">Full Name:</span> <input id="fullname" class="swal2-input" value="${userData.fullname}"><br>
+            <span style="display: inline-block; width: 100px;">Email:</span> <input id="email" class="swal2-input" value="${userData.email}"><br>
+            <span style="display: inline-block; width: 100px;">Phone:</span> <input id="phoneNumber" class="swal2-input" value="${userData.phoneNumber}"><br>
+            <span style="display: inline-block; width: 100px;">Address:</span> <input id="address" class="swal2-input" value="${userData.address}"><br>
+            <span style="display: inline-block; width: 100px;">Date of Birth:</span> <input id="dateOfBirth" type="date" class="swal2-input" value="${dateOfBirth}"><br>
+            </div>
+            `,
+            showCancelButton: true,
+            confirmButtonText: "Submit",
+            preConfirm: () => {
+                return {
+                    userName: document.getElementById("userName").value,
+                    fullname: document.getElementById("fullname").value,
+                    email: document.getElementById("email").value,
+                    phoneNumber: document.getElementById("phoneNumber").value,
+                    address: document.getElementById("address").value,
+                    dateOfBirth: document.getElementById("dateOfBirth").value,
+                };
+            },
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const userId = userData.id;
+                console.log(userId);
+                const updatedData = {
+                    userName: document.getElementById("userName").value,
+                    fullname: document.getElementById("fullname").value,
+                    email: document.getElementById("email").value,
+                    phoneNumber: document.getElementById("phoneNumber").value,
+                    address: document.getElementById("address").value,
+                    // dateOfBirth: document.getElementById("dateOfBirth").value,
+                    dateOfBirth: "2024-03-31T10:28:54.088Z",
+                };
+
+                // Make a PUT request to your API endpoint
+                axios.put(`http://localhost:5224/api/users/${userId}`, updatedData)
+                    .then(response => {
+                        console.log(`Updated user with ID ${userId}`);
+                        // Optionally, you can reload the page or perform other actions after updating
+                        window.location.reload();
+                    })
+                    .catch(error => {
+                        console.error('Error updating user:', error);
+                    });
+
+                Swal.fire(`Profile updated successfully`, '', 'success');
+            }
+        });
+    };
     const handleDeleteClick = () => {
         const fullName = userData.fullname;
         const names = fullName.split(' ');
@@ -119,11 +177,11 @@ export default function UserCard({ userData }) {
                 <IconButton onClick={handleInfoClick}>
                     <InfoIcon />
                 </IconButton>
-                <IconButton >
+                <IconButton onClick={handleEditClick}>
                     <ModeEditIcon />
                 </IconButton>
-                <IconButton >
-                    <DeleteIcon onClick={handleDeleteClick} />
+                <IconButton onClick={handleDeleteClick}>
+                    <DeleteIcon />
                 </IconButton>
             </CardActions>
 

@@ -23,6 +23,7 @@ import './index.css'
 import './styles/global.scss'
 import AccountTable from './components/accounts/AccountTable.jsx'; 
 import Account from './components/accounts/index.jsx';
+import ForgotPassword from './pages/ForgotPassword.jsx';
 
 
 function App() {
@@ -37,20 +38,21 @@ function App() {
             <Route path="/@adminLogin" element={<AdminLogin />} />
             <Route path="/login" element={<Login />} />
 
-            <Route path="/transaction" element={<Transaction/>}/>
+            <Route path="/transaction" element={<Transaction />} />
 
             {/* teller routes */}
             <Route path="/adminhomepage" element={<AdminAsideBar />} />
-            <Route path="/adminusers" element={<AdminUsers />} />            
+            <Route path="/adminusers" element={<AdminUsers />} />
             {/* <Route path="/adminaccounts" element={<AccountTable />} /> */}
             <Route path="/account-details" element={<Account />} />
 
             {/* user routes */}
             <Route path="/userhomepage" element={<UserAsideBar />} />
+            <Route path="/forgotpassword" element={<ForgotPassword />} />
             {/* <Route path="/userDashboard" element={<UserDashboard />} /> */}
 
             <Route path="*" element={<NoPage />} />
-            <Route path="/kyc" element={<KycPage/>} /> 
+            <Route path="/kyc" element={<KycPage />} />
           </Routes>
         </div>
       </Router>
