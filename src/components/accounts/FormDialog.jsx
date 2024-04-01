@@ -10,14 +10,15 @@ import axios from "axios";
 
 const FormDialog = ({ open, onClose, onOpen }) => {
   const [atmCardPin, setAtmPin] = React.useState("");
-  const [emailId, setEmailId] = React.useState("");
+  const [accountNumber, setAccountNumber] = React.useState("");
+  const [accountDetails, setAccountDetails] = React.useState([]);
 
   const handleChange = (event) => {
     setAtmPin(event.target.value);
   };
 
-  const handleEmailIdChange = (event) => {
-    setEmailId(event.target.value);
+  const handleAccountNumberChange = (event) => {
+    setAccountNumber(event.target.value);
   };
 
   const token = localStorage.getItem('token');
@@ -32,7 +33,7 @@ const FormDialog = ({ open, onClose, onOpen }) => {
     event.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:5224/api/accounts/${emailId}`,
+        `http://localhost:5224/api/accounts?accountNumber=${accountNumber}`,
         {
           atmCardPin,
         }, {
@@ -40,19 +41,27 @@ const FormDialog = ({ open, onClose, onOpen }) => {
         headers: config.headers // Send token in headers
       });
       console.log("Pin reset successful:", response.data);
-      // Update the accounts state with the updated account data
-      // setAccounts((prevAccounts) =>
-      //   prevAccounts.map((acc) =>
-      //     acc.accountId === accountToEdit.accountId ? response.data : acc
-      //   )
-      // );
+      refreshAccount(); // Refresh the account after successful submission
     } catch (error) {
       console.error("Pin reset failed:", error);
     } finally {
       setAtmPin("");
-      setEmailId("");
-      // setAccountToEdit(null); // Reset the accountToEdit state
+      setAccountNumber("");
       onClose(); // Close the dialog after submitting
+    }
+  };
+
+  // Function to refresh account data
+  const refreshAccount = async () => {
+    try {
+      const response = await fetch("http://localhost:5224/api/accounts?accountNumber=" + accountNumber, {
+        withCredentials: true, // Add withCredentials option
+        headers: config.headers // Send token in headers
+      });
+      const data = await response.json();
+      setAccountDetails(data);
+    } catch (error) {
+      console.error('Error refreshing account:', error);
     }
   };
 
@@ -75,13 +84,12 @@ const FormDialog = ({ open, onClose, onOpen }) => {
           autoFocus
           required
           margin="dense"
-          id="email"
-          name="email"
-          label="Email Address"
-          type="email"
+          id="accountNumber"
+          name="accountNumber"
+          label="Account Number"
+          type="text"
           fullWidth
-          // value={accountToEdit?.email || ""} // Use optional chaining to handle null values
-          onChange={handleEmailIdChange}
+          onChange={handleAccountNumberChange}
         />
         <TextField
           required
@@ -89,9 +97,9 @@ const FormDialog = ({ open, onClose, onOpen }) => {
           id="atmPin"
           name="atmPin"
           label="Change ATM Pin"
-          type="text"
+          type="number"
+          max="4"
           fullWidth
-          // value={accountToEdit?.atmCardPin || ""} // Use optional chaining to handle null values
           onChange={handleChange}
         />
       </DialogContent>
