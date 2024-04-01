@@ -31,7 +31,7 @@ export default function AccountDetails() {
                 throw new Error("Failed to fetch account details");
             }
             const response = await responseData.json();
-             console.log("Response data:", response);
+            console.log("Response data:", response);
 
             setAccountDetails(response); // Update this line
         } catch (error) {
@@ -48,17 +48,20 @@ export default function AccountDetails() {
     const handleClose = () => {
         setOpen(false);
     };
+
+
     return (
         <div>
             <h1>Account Details</h1>
             <div className="container">
                 {accountDetails ? (
                     <div>
-                        <p>Account ID: {accountDetails.accountId}</p>
-                        <p>User ID: {accountDetails.userId}</p>
                         <p>Account Number: {accountDetails.accountNumber}</p>
                         <p>Balance: {accountDetails.balance}</p>
+                        <p>Balance: {accountDetails.atmCardNum}</p>
+                        <p>ATM Pin: {accountDetails.atmCardPin}</p>
                         <p>Created At: {accountDetails.createdAt}</p>
+                        <p>Modified At: {accountDetails.modifiedAt}</p>
                         <Button onClick={handleClickOpen}>
                             <EditIcon />
                         </Button>
