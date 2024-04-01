@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 
 import UserProfile from './UserProfile'
 import UserUpdateProfile from './UserUpdateProfile'
+import UserUpdateCredentials from './UserUpdateCredentials'
 
 function CustomTabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -62,10 +63,10 @@ export default function UserParent() {
                 <UserProfile />
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
-               <UserUpdateProfile/>
+                <UserUpdateProfile />
             </CustomTabPanel>
             <CustomTabPanel value={value} index={2}>
-                Item Three
+                <UserUpdateCredentials />
             </CustomTabPanel>
         </Box>
     );

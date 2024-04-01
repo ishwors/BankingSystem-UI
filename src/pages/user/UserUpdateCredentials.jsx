@@ -41,60 +41,31 @@ export default function UserUpdateProfile() {
         }
     };
 
-    const [userProfile, setUserProfile] = React.useState({})
-
-    React.useEffect(() => {
-        console.log("Fetching data...");
-        const getUserProfile = async () => {
-            try {
-                const response = await axios.get(`http://localhost:5224/api/users/${userId}`, {
-                    withCredentials: true, // Add withCredentials option
-                    headers: config.headers // Send token in headers
-                });
-                if (response.status === 200) {
-                    console.log(response.data);
-                    setUserProfile(response.data);
-                }
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        };
-        getUserProfile();
-    }, []);
-
-
     const [formData, setFormData] = React.useState({
-        fullName: '',
-        email: '',
-        userName: '',
-        password: '',
-        address: '',
-        phone: '',
-        userType: '',
-        dateOfBirth: null,
+        oldPassword: '',
+        newPassword: '',
     });
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-        setUserProfile((prevData) => ({
+        setFormData((prevData) => ({
             ...prevData,
             [name]: value,
         }));
     };
 
-    const updateUser = async (data) => {
+    const updateUserCredential = async (data) => {
         try {
             console.log('credentials:', data);
             console.log(data);
-            // return
-            const response = await fetch(`http://localhost:5224/api/users/${userId}`, {
+           
+            const response = await fetch(`http://localhost:5224/changePassword`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    UserName: data.userName, FullName: data.fullname, Email: data.email, Address: data.address, PhoneNumber: data.phoneNumber, DateOfBirth: "2024-03-30T13:40:13.001Z",
-
+                    UserId: userId, OldPassword: data.oldPassword, NewPassword: data.newPassword
                 })
             });
 
@@ -114,18 +85,18 @@ export default function UserUpdateProfile() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const { userName, fullname, email, phoneNumber, address, dateOfBirth } = userProfile;
+        const { oldPassword, newPassword } = formData;
 
         // console.log(userProfile);
 
-        const response = await updateUser({ userName, fullname, email, phoneNumber, address, dateOfBirth });
+        const response = await updateUserCredential({ oldPassword, newPassword });
 
         if (response) {
-            console.log('User Profile Updated:', response);
+            console.log('User Credentials Updated:', response);
             Swal.fire({
                 position: "top-end",
                 icon: "success",
-                title: "User Profile Updated",
+                title: "User Credentials Updated",
                 showConfirmButton: false,
                 timer: 2000
             });
@@ -161,7 +132,7 @@ export default function UserUpdateProfile() {
                     </Avatar>
                     {/* <Typography component="h1" variant="h5"> */}
                     <Typography component="span">
-                        Update Profile
+                        Update Credentials
                     </Typography>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                         <Grid container spacing={1}>
@@ -169,10 +140,9 @@ export default function UserUpdateProfile() {
                                 <TextField
                                     required
                                     fullWidth
-                                    id="fullname"
-                                    placeholder="Full Name"
-                                    name="fullname"
-                                    value={userProfile.fullname}
+                                    id="oldPassword"
+                                    placeholder="Old Password"
+                                    name="oldPassword"
                                     onChange={handleChange}
                                 />
                             </Grid>
@@ -180,67 +150,11 @@ export default function UserUpdateProfile() {
                                 <TextField
                                     required
                                     fullWidth
-                                    id="email"
-                                    placeholder="Email"
-                                    name="email"
-                                    autoComplete="email"
-                                    value={userProfile.email}
+                                    id="newPassword"
+                                    placeholder="New Password"
+                                    name="newPassword"
                                     onChange={handleChange}
                                 />
-                            </Grid>
-                            <Grid item xs={12} >
-                                <TextField
-                                    required
-                                    fullWidth
-                                    id="userName"
-                                    placeholder="User Name"
-                                    name="userName"
-                                    value={userProfile.userName}
-                                    onChange={handleChange}
-
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    name="address"
-                                    placeholder="Address"
-                                    id="address"
-                                    value={userProfile.address}
-                                    onChange={handleChange}
-
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    name="phoneNumber"
-                                    placeholder="Phone Number"
-                                    id="phoneNumber"
-                                    value={userProfile.phoneNumber}
-                                    onChange={handleChange}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <input type="hidden" id='userType' name='userType' value={0} />
-                                {/* <input type="hidden" id='modifiedBy' name='modifiedBy' value={`${userId}`} />
-                                <input type="hidden" id='modifiedAt' name='modifiedAt' value={Date.now()} /> */}
-                            </Grid>
-                            <Grid item xs={12}>
-                                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                    <DatePicker label="Date of Birth"
-                                        name="dateOfBirth"
-
-                                    // onChange={(newValue) => {
-                                    //     setFormData((prevFormData) => ({
-                                    //         ...prevFormData,
-                                    //         dateOfBirth: "2024-03-30T13:40:13.001Z",
-                                    //     }));
-                                    // }}
-                                    />
-                                </LocalizationProvider>
                             </Grid>
                         </Grid>
                         <Button
