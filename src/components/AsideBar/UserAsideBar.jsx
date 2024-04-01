@@ -29,7 +29,7 @@ import Swal from "sweetalert2";
 import Transaction from '../../pages/Transaction.jsx';
 import { UserAsideBarData } from "./UserAsideBarData.jsx";
 import axios from 'axios';
-import KycPage from '../../pages/Kyc.jsx';
+import UserKycPage from '../../pages/user/UserKycPage.jsx';
 
 const drawerWidth = 240;
 
@@ -224,7 +224,7 @@ export default function AsideBar() {
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 {menudata == "Dashboard" && <UserDashboard />}
                 {menudata == "Transactions" && <Transaction/>}
-                {menudata == "KYC" && <KycPage/>}   
+                {menudata == "KycPage" && <UserKycPage/>}  
             </Box>
         </Box >
     );

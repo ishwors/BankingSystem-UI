@@ -17,7 +17,7 @@ export const UserAsideBarData = [
         icon: <AccountIcon />,
     },
     {
-        title: "KYC",
+        title: "KycPage",
         icon: <KYCIcon />,
     },
     {

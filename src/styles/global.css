@@ -82,7 +82,8 @@ nav {
   box-shadow: 0px 2px 10px #aaa;
   z-index: 1000;
 }
-nav #navContainer {
+
+#navContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-between !important;
@@ -91,23 +92,30 @@ nav #navContainer {
   width: 100%;
   align-items: center;
 }
-nav #navContainer #navItems {
+
+#navItems {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   text-align: center;
+  /* border: 1px solid black; */
 }
-nav #navContainer #navItems .item {
-  margin: 0 10px;
+
+.item {
+  /* border: 1px solid black; */
+  margin-left: 10px;
+  margin-right: 10px;
   flex-basis: 50px;
   list-style: none;
 }
-nav #navContainer #navItems .item a {
+
+div > ul > li > a {
   color: black;
   cursor: pointer;
   text-decoration: none;
 }
-nav #navContainer #navLogo {
+
+#navLogo {
   width: 150px;
 }
 
@@ -184,12 +192,12 @@ aside {
   height: auto;
   margin: 0 auto;
   border: 1px solid grey;
-  border-radius: 8px;
+  border-radius: 15px;
   padding: 20px;
   text-align: center;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   font-weight: bold;
 }
 .kycSubmitPage .label {
@@ -210,15 +218,18 @@ aside {
           backdrop-filter: blur(10px);
   height: auto;
   max-width: 400px;
-  margin: 0 auto 30px; /* Combine margin properties */
+  margin: 0 auto;
+  margin-bottom: 30px;
   border: 1px solid var(--warning-main);
   border-radius: 8px;
   padding: 20px;
   text-align: center;
-  color: #000; /* Use shorthand for black */
+  color: rgb(0, 0, 0);
+  position: relative;
+  top: 20px;
+  justify-content: center;
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 40%;
   transform: translate(-50%, -50%);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-weight: bold;
@@ -236,7 +247,7 @@ aside {
   border-radius: 0.25em;
   position: relative;
 }
-.custom-alert .alert-button::after { /* Use cleaner selector for pseudo-element */
+.custom-alert .alert-button::after {
   content: "";
   position: absolute;
   z-index: -1;
@@ -246,7 +257,8 @@ aside {
   transform-origin: right;
   transition: scale 450ms;
 }
-.custom-alert .alert-button:hover::after, .custom-alert .alert-button:focus-visible::after {
+.custom-alert .alert-button:hover::after,
+.custom-alert .alert-button:focus-visible::after {
   transform-origin: left;
   scale: 1 1;
 }/*# sourceMappingURL=global.css.map */
