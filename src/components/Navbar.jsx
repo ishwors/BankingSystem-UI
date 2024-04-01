@@ -5,7 +5,7 @@ const userType = localStorage.getItem('userType');
 
 const handleLogout = () => {
     localStorage.clear(); // Clear local storage
-    window.location.href = "/"; // Redirect to home page
+    history.push("/"); // Redirect to home page
 };
 
 export default function Navbar() {

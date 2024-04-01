@@ -11,7 +11,6 @@ import AdminUsers from './pages/admin/AdminUsers.jsx'
 
 //define teller pages
 import UserDashboard from './pages/UserDashboard.jsx'
-import KycPage from './pages/Kyc.jsx'; // kyc page
 import Home from './pages/Home.jsx'
 import NoPage from './pages/NoPage.jsx'
 import Login from './pages/Login.jsx'
@@ -52,7 +51,6 @@ function App() {
             {/* <Route path="/userDashboard" element={<UserDashboard />} /> */}
 
             <Route path="*" element={<NoPage />} />
-            <Route path="/kyc" element={<KycPage />} />
           </Routes>
         </div>
       </Router>
