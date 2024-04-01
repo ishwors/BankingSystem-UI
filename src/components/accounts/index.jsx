@@ -1,18 +1,20 @@
 import * as React from "react";
-import AccountTable from "./AccountTable";
+import AccountDetails from "./AccountDetails";
+import AccoiuntTable from "./AccountTable";
 
 export default function Account() {
+
+  const userType = localStorage.getItem('userType');
+
   return (
-    <>
-      <AccountTable />
+    <> 
+      {userType == 'TellerPerson' && (
+        <AccoiuntTable />
+      )}
+      {userType == 'AccountHolder' && (
+      <AccountDetails />
+      )}
     </>
   );
 }
 
-export function SingleAccount() {
-  return (
-    <React.Fragment>
-      <div className="account account-holder"></div>
-    </React.Fragment>
-  );
-}

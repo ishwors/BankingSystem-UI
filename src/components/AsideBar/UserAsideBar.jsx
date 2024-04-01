@@ -23,13 +23,15 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-
+import Account from '../accounts/index.jsx';
 import UserDashboard from "../../pages/UserDashboard.jsx";
 import Swal from "sweetalert2";
 import Transaction from '../../pages/Transaction.jsx';
 import { UserAsideBarData } from "./UserAsideBarData.jsx";
 import axios from 'axios';
 import UserKycPage from '../../pages/user/UserKycPage.jsx';
+
+import UserParent from '../../pages/user/UserParent.jsx';
 
 const drawerWidth = 240;
 
@@ -98,7 +100,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
 );
 
-export default function AsideBar() {
+export default function UserAsideBar() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
     const [menudata, setmenudata] = React.useState("Dashboard");
@@ -125,15 +127,15 @@ export default function AsideBar() {
 
                 localStorage.clear(); // Clear local storage
                 Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Logout Successful",
-                showConfirmButton: false,
-                timer: 2000
-            });
-            setTimeout(() => {
-                window.location.href = "/"; // Redirect to home page
-            }, 2000);
+                    position: "top-end",
+                    icon: "success",
+                    title: "Logout Successful",
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                setTimeout(() => {
+                    window.location.href = "/"; // Redirect to home page
+                }, 2000);
             }
             catch (error) {
                 console.error('Logout failed:', error);
@@ -223,8 +225,10 @@ export default function AsideBar() {
             </Drawer>
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 {menudata == "Dashboard" && <UserDashboard />}
-                {menudata == "Transactions" && <Transaction/>}
-                {menudata == "KycPage" && <UserKycPage/>}  
+                {menudata == "Transactions" && <Transaction />}
+                {menudata == "Accounts" && <Account />}
+                {menudata == "KycPage" && <UserKycPage />}
+                {menudata == "Profile" && <UserParent />}
             </Box>
         </Box >
     );
