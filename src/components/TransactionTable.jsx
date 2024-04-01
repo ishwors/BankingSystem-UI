@@ -5,11 +5,10 @@ function TransactionTable({ transactions }) {
         <table className="transaction-table">
                         <thead>
                             <tr>
-                                <th>Transaction ID</th>
-                                <th>Account ID</th>
-                                <th>User ID</th>
-                                <th>Amount</th>
+                                <th>Account Number</th>
+                                <th>User Name</th>
                                 <th>Transaction Type</th>
+                                <th>Amount</th>
                                 <th>Transaction Time</th>
                                 <th>Transaction Remarks</th>
                             </tr>
@@ -17,11 +16,10 @@ function TransactionTable({ transactions }) {
                         <tbody>
                             {transactions.map((transaction, index) => (
                                 <tr key={index}>
-                                    <td>{transaction.transactionId}</td>
-                                    <td>{transaction.accountId}</td>
-                                    <td>{transaction.accounts.userId}</td>
-                                    <td>{transaction.amount}</td>
+                                    <td>{transaction.accountNumber}</td>
+                                    <td>{transaction.userName}</td>
                                     <td>{transaction.transactionType}</td>
+                                    <td>{transaction.amount}</td>
                                     <td>{transaction.transactionTime}</td>
                                     <td>{transaction.transactionRemarks}</td>
                                 </tr>
