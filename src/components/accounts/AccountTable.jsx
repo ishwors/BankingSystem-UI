@@ -53,7 +53,7 @@ export default function CustomizedTables() {
     setOpen(false);
   };
 
-  
+
   // Retrieve the JWT token from local storage
   const token = localStorage.getItem('token');
 
@@ -68,7 +68,7 @@ export default function CustomizedTables() {
     console.log("Fetching accounts...");
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:5224/api/accounts",{
+        const response = await axios.get("http://localhost:5224/api/accounts", {
           withCredentials: true, // Add withCredentials option
           headers: config.headers // Send token in headers
         });
