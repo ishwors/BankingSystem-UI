@@ -22,13 +22,11 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-
-
 import Swal from 'sweetalert2';
 
 const defaultTheme = createTheme();
 
-export default function ForgotPassword() {
+export default function UserUpdateProfile() {
 
     //Retrieve userId from local storage
     const userId = localStorage.getItem('userId');
@@ -44,7 +42,7 @@ export default function ForgotPassword() {
     };
 
     const [formData, setFormData] = React.useState({
-        username: '',
+        oldPassword: '',
         newPassword: '',
     });
 
@@ -60,14 +58,14 @@ export default function ForgotPassword() {
         try {
             console.log('credentials:', data);
             console.log(data);
-
-            const response = await fetch(`http://localhost:5224/resetPassword`, {
+           
+            const response = await fetch(`http://localhost:5224/changePassword`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    userName: data.username, password: data.newPassword
+                    UserId: userId, OldPassword: data.oldPassword, NewPassword: data.newPassword
                 })
             });
 
@@ -83,35 +81,38 @@ export default function ForgotPassword() {
         }
     };
 
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const { username, newPassword } = formData;
+        const { oldPassword, newPassword } = formData;
 
-        console.log('username:', username);
-        console.log('newPassword:', newPassword);
+        // console.log(userProfile);
 
-        const response = await updateUserCredential({ username, newPassword });
+        const response = await updateUserCredential({ oldPassword, newPassword });
 
         if (response) {
             console.log('User Credentials Updated:', response);
             Swal.fire({
                 position: "top-end",
                 icon: "success",
-                title: "Credentials Reset Successfully",
+                title: "User Credentials Updated",
                 showConfirmButton: false,
                 timer: 2000
             });
+            // alert(`Full Name: ${fullName}, Email: ${email}, User Name: ${userName}, Password: ${password}, Address: ${address}, Phone: ${phone}, User Type: ${userType}, Date of Birth: ${dateOfBirth}`);
         } else {
             console.log('Update failed');
             Swal.fire({
                 position: "top-end",
                 icon: "error",
-                title: "Reset Failed",
+                title: "Update Failed",
                 showConfirmButton: false,
                 timer: 2000
             });
         }
+
+
     }
 
     return (
@@ -120,47 +121,51 @@ export default function ForgotPassword() {
                 <CssBaseline />
                 <Box
                     sx={{
-                        marginTop: 8,
+                        marginTop: 0,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
                     }}
                 >
-                    {/*   <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                        <LockOutlinedIcon />
-                    </Avatar> */}
-                    <Typography component="h1" variant="h5">
-                        Forgot Password?
+                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                        <HowToRegOutlinedIcon />
+                    </Avatar>
+                    {/* <Typography component="h1" variant="h5"> */}
+                    <Typography component="span">
+                        Update Credentials
                     </Typography>
-                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="username"
-                            label="UserName"
-                            name="username"
-                            onChange={handleChange}
-                        />
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="newPassword"
-                            label="New Password"
-                            type="password"
-                            id="newPassword"
-                            onChange={handleChange}
-
-                        />
+                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                        <Grid container spacing={1}>
+                            <Grid item xs={12}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    id="oldPassword"
+                                    placeholder="Old Password"
+                                    name="oldPassword"
+                                    onChange={handleChange}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    id="newPassword"
+                                    placeholder="New Password"
+                                    name="newPassword"
+                                    onChange={handleChange}
+                                />
+                            </Grid>
+                        </Grid>
                         <Button
                             type="submit"
                             fullWidth
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
                         >
-                            Reset
+                            Update
                         </Button>
+
                     </Box>
                 </Box>
 
