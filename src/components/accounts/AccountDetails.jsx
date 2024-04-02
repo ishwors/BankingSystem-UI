@@ -53,7 +53,7 @@ export default function AccountDetails() {
 
 
     return (
-        <div>
+        <>
             <h2><b>Account Details</b></h2>
             <div className="container">
                 {accountDetails ? (
@@ -70,22 +70,23 @@ export default function AccountDetails() {
                                 <EditIcon />
                             </IconButton>
                         </p>
-                        <p><b>Created At:</b> {accountDetails.createdAt}</p>
-                        <p><b>Modified At:</b> {accountDetails.modifiedAt}</p>
+                        <p><b>Created At:</b> {(accountDetails.createdAt).split('T')[0]}</p>
+                        <p><b>Created At:</b> {(accountDetails.modifiedAt).split('T')[0]}</p>
 
 
-                        <FormDialog
-                            open={open}
-                            onClose={handleClose}
-                            onOpen={handleClickOpen}
-                            account={accountToEdit}
-                            accountNumber={accountToEdit?.accountNumber}
-                        />
+
                     </div>
                 ) : (
                     <p>No account details found</p>
                 )}
             </div>
-        </div>
+            <FormDialog
+                open={open}
+                onClose={handleClose}
+                onOpen={handleClickOpen}
+                account={accountToEdit}
+                accountNumber={accountToEdit?.accountNumber}
+            />
+        </>
     );
 }
