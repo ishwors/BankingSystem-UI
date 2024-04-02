@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 import Button from '@mui/material/Button';
 const userType = localStorage.getItem('userType');
 
@@ -21,28 +22,14 @@ export default function Navbar() {
                             <Link to="/"><p>Home</p></Link>
                         </li>
                         <li className="item">
-                            <p>Team</p>
-                            {/* <Link to="/search"><i class="fa-solid fa-magnifying-glass fa-xl" style={{ color: "#ffffff", }}></i></Link> */}
+                            <Link to="/aboutUs"><p>About Us</p></Link>
                         </li>
                         <li className="item">
-                            <p>Products</p>
-                            {/* <Link to="/search"><i class="fa-solid fa-magnifying-glass fa-xl" style={{ color: "#ffffff", }}></i></Link> */}
+                            <Link to="/team"><p>Team</p></Link>
                         </li>
                         <li className="item">
-                            <p>Clients</p>
-                            {/* <Link to="/search"><i class="fa-solid fa-magnifying-glass fa-xl" style={{ color: "#ffffff", }}></i></Link> */}
-                        </li>
-                        <li className="item">
-                            <p>Career</p>
-                            {/* <Link to="/search"><i class="fa-solid fa-magnifying-glass fa-xl" style={{ color: "#ffffff", }}></i></Link> */}
-                        </li>
-                        <li className="item">
-                            <p>Blog</p>
-                            {/* <Link to="/search"><i class="fa-solid fa-magnifying-glass fa-xl" style={{ color: "#ffffff", }}></i></Link> */}
-                        </li>
-                        <li className="item">
-                            <p>Contacts</p>
-                            {/* <Link to="/search"><i class="fa-solid fa-magnifying-glass fa-xl" style={{ color: "#ffffff", }}></i></Link> */}
+                            <Link to="/contactUs"><p>Contact Us</p></Link>
+
                         </li>
 
                     </ul>
@@ -60,6 +47,6 @@ export default function Navbar() {
                     </Button>
                 </div>
             </div>
-        </nav>
+        </nav >
     )
 }
