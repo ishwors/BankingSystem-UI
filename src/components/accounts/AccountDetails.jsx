@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Button from "@mui/material/Button";
 import EditIcon from "@mui/icons-material/Edit";
 import FormDialog from "./FormDialog";
+import IconButton from '@mui/material/IconButton';
 
 export default function AccountDetails() {
     const [accountDetails, setAccountDetails] = useState([]);
+    const [accountToEdit, setAccountToEdit] = React.useState(null);
 
     //get token from local storage
     const token = localStorage.getItem('token');
@@ -52,20 +54,33 @@ export default function AccountDetails() {
 
     return (
         <div>
-            <h1>Account Details</h1>
+            <h2><b>Account Details</b></h2>
             <div className="container">
                 {accountDetails ? (
                     <div>
-                        <p>Account Number: {accountDetails.accountNumber}</p>
-                        <p>Balance: {accountDetails.balance}</p>
-                        <p>Balance: {accountDetails.atmCardNum}</p>
-                        <p>ATM Pin: {accountDetails.atmCardPin}</p>
-                        <p>Created At: {accountDetails.createdAt}</p>
-                        <p>Modified At: {accountDetails.modifiedAt}</p>
-                        <Button onClick={handleClickOpen}>
-                            <EditIcon />
-                        </Button>
-                        <FormDialog open={open} onClose={handleClose} onOpen={handleClickOpen} />
+                        <p><b>Account Number:</b> {accountDetails.accountNumber}</p>
+                        <p><b>Balance:</b> {accountDetails.balance}</p>
+                        <p><b>ATM Number:</b> {accountDetails.atmCardNum} </p>
+                        <p><b>ATM Pin:</b> {accountDetails.atmCardPin}
+                            <IconButton aria-label="edit" size="small"
+                                onClick={() => {
+                                    setAccountToEdit(accountDetails);
+                                    handleClickOpen();
+                                }}>
+                                <EditIcon />
+                            </IconButton>
+                        </p>
+                        <p><b>Created At:</b> {accountDetails.createdAt}</p>
+                        <p><b>Modified At:</b> {accountDetails.modifiedAt}</p>
+
+
+                        <FormDialog
+                            open={open}
+                            onClose={handleClose}
+                            onOpen={handleClickOpen}
+                            account={accountToEdit}
+                            accountNumber={accountToEdit?.accountNumber}
+                        />
                     </div>
                 ) : (
                     <p>No account details found</p>

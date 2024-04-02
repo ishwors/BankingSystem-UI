@@ -5,8 +5,6 @@ export default function UserDashboard() {
     return (
         <div>
             <h1>Hello world! This is after User</h1>
-            <h1>Hello world! This is after User Login</h1>
-         
         </div>
     )
 }
