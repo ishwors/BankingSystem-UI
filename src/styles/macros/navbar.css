@@ -27,14 +27,19 @@ nav {
   margin-right: 10px;
   flex-basis: 50px;
   list-style: none;
+
 }
 
-div > ul > li > a {
+div>ul>li>a {
   color: black;
   cursor: pointer;
   text-decoration: none;
 }
 
+
+
 #navLogo {
   width: 150px;
-}/*# sourceMappingURL=navbar.css.map */
+}
+
+/*# sourceMappingURL=navbar.css.map */
