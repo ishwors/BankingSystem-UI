@@ -70,17 +70,11 @@ export default function AccountDetails() {
                                 <EditIcon />
                             </IconButton>
                         </p>
-                        <p><b>Created At:</b> {accountDetails.createdAt}</p>
-                        <p><b>Modified At:</b> {accountDetails.modifiedAt}</p>
+                        <p><b>Created At:</b>{accountDetails.createdAt}</p>
+                        <p><b>Created At:</b>{accountDetails.modifiedAt}</p>
 
 
-                        <FormDialog
-                            open={open}
-                            onClose={handleClose}
-                            onOpen={handleClickOpen}
-                            account={accountToEdit}
-                            accountNumber={accountToEdit?.accountNumber}
-                        />
+
                     </div>
                 ) : (
                     <p>No account details found</p>
