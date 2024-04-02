@@ -29,7 +29,7 @@ import Swal from "sweetalert2";
 import Transaction from '../../pages/Transaction.jsx';
 import { UserAsideBarData } from "./UserAsideBarData.jsx";
 import axios from 'axios';
-import KycPage from '../../pages/Kyc.jsx';
+import UserKycPage from '../../pages/user/UserKycPage.jsx';
 
 import UserParent from '../../pages/user/UserParent.jsx';
 
@@ -227,7 +227,7 @@ export default function UserAsideBar() {
                 {menudata == "Dashboard" && <UserDashboard />}
                 {menudata == "Transactions" && <Transaction />}
                 {menudata == "Accounts" && <Account />}
-                {menudata == "KYC" && <KycPage />}
+                {menudata == "KycPage" && <UserKycPage />}
                 {menudata == "Profile" && <UserParent />}
             </Box>
         </Box >

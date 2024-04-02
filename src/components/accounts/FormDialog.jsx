@@ -8,16 +8,16 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import axios from "axios";
 
-const FormDialog = ({ open, onClose, onOpen }) => {
+const FormDialog = ({ open, onClose, onOpen, account, accountNumber }) => {
   const [atmCardPin, setAtmPin] = React.useState("");
-  const [emailId, setEmailId] = React.useState("");
+  const [accountNumberState, setAccountNumber] = React.useState(accountNumber || "");
 
   const handleChange = (event) => {
     setAtmPin(event.target.value);
   };
 
-  const handleEmailIdChange = (event) => {
-    setEmailId(event.target.value);
+  const handleAccountNumberChange = (event) => {
+    setAccountNumber(event.target.value);
   };
 
   const token = localStorage.getItem('token');
@@ -32,7 +32,7 @@ const FormDialog = ({ open, onClose, onOpen }) => {
     event.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:5224/api/accounts/${emailId}`,
+        `http://localhost:5224/api/accounts?accountNumber=${accountNumber}`,
         {
           atmCardPin,
         }, {
@@ -40,21 +40,15 @@ const FormDialog = ({ open, onClose, onOpen }) => {
         headers: config.headers // Send token in headers
       });
       console.log("Pin reset successful:", response.data);
-      // Update the accounts state with the updated account data
-      // setAccounts((prevAccounts) =>
-      //   prevAccounts.map((acc) =>
-      //     acc.accountId === accountToEdit.accountId ? response.data : acc
-      //   )
-      // );
     } catch (error) {
       console.error("Pin reset failed:", error);
     } finally {
       setAtmPin("");
-      setEmailId("");
-      // setAccountToEdit(null); // Reset the accountToEdit state
+      setAccountNumber("");
       onClose(); // Close the dialog after submitting
     }
   };
+
 
   return (
     <Dialog
@@ -69,19 +63,19 @@ const FormDialog = ({ open, onClose, onOpen }) => {
       <DialogTitle>Change ATM Pin</DialogTitle>
       <DialogContent>
         <DialogContentText>
-          To change ATM pin, please enter email and ATM pin number.
+          To change ATM pin, please verify your account number and enter new ATM pin number.
         </DialogContentText>
         <TextField
           autoFocus
           required
           margin="dense"
-          id="email"
-          name="email"
-          label="Email Address"
-          type="email"
+          id="accountNumber"
+          name="accountNumber"
+          label="Account Number"
+          type="text"
+          value={account?.accountNumber}
           fullWidth
-          // value={accountToEdit?.email || ""} // Use optional chaining to handle null values
-          onChange={handleEmailIdChange}
+          onChange={handleAccountNumberChange}
         />
         <TextField
           required
@@ -89,9 +83,9 @@ const FormDialog = ({ open, onClose, onOpen }) => {
           id="atmPin"
           name="atmPin"
           label="Change ATM Pin"
-          type="text"
+          type="number"
+          max="4"
           fullWidth
-          // value={accountToEdit?.atmCardPin || ""} // Use optional chaining to handle null values
           onChange={handleChange}
         />
       </DialogContent>

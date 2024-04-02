@@ -42,6 +42,7 @@ export default function CustomizedTables() {
 
   const [isLoading, setIsLoading] = React.useState(true);
   const [accountToDelete, setAccountToDelete] = React.useState(null);
+  const [accountToEdit, setAccountToEdit] = React.useState(null);
 
   const [open, setOpen] = React.useState(false);
 
@@ -53,7 +54,7 @@ export default function CustomizedTables() {
     setOpen(false);
   };
 
-  
+
   // Retrieve the JWT token from local storage
   const token = localStorage.getItem('token');
 
@@ -68,7 +69,7 @@ export default function CustomizedTables() {
     console.log("Fetching accounts...");
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:5224/api/accounts",{
+        const response = await axios.get("http://localhost:5224/api/accounts", {
           withCredentials: true, // Add withCredentials option
           headers: config.headers // Send token in headers
         });
@@ -100,6 +101,21 @@ export default function CustomizedTables() {
       console.error("Error deleting account:", error);
     }
   };
+
+  // const handleEditAccount = async () => {
+  //   try {
+  //     // Make an API call to delete the account
+  //     const response = await axios.get(
+  //       `http://localhost:5224/api/accounts/${accountToEdit.accountId}`
+  //     );
+  //     setAccountToEdit(response);
+  //   } catch (error) {
+  //     console.error("Error editingting account:", error);
+  //   }
+  // };
+
+
+
   return (
     <>
       {isLoading ? (
@@ -150,10 +166,19 @@ export default function CustomizedTables() {
                         onConfirm={handleDeleteAccount}
                         account={accountToDelete}
                       />
-                      <Button onClick={handleClickOpen}>
+                      <Button onClick={() => {
+                        setAccountToEdit(account);
+                        handleClickOpen();
+                      }}>
                         <EditIcon />
                       </Button>
-                      <FormDialog open={open} onClose={handleClose} onOpen={handleClickOpen} />
+                      <FormDialog
+                        open={open}
+                        onClose={handleClose}
+                        onOpen={handleClickOpen}
+                        account={accountToEdit}
+                        accountNumber={accountToEdit?.accountNumber}
+                      />
                     </Stack>
                   </StyledTableCell>
                 </StyledTableRow>
