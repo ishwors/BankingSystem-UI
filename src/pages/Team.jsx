@@ -11,8 +11,11 @@ export default function Team() {
     return (
         <div>
             <Navbar />
-            <h2>Our Team</h2>
-            <p>Our team consists of dedicated professionals who are committed to ensuring your banking experience is smooth and hassle-free. We are here to help you with all your banking needs.</p>
+            <div style={{ backgroundColor: 'lightgreen', height: '15rem', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center' }}>
+                <h2>Our Team</h2>
+                <br />
+                <p>Our team consists of dedicated professionals who are committed to ensuring your banking experience is smooth and hassle-free.<br></br> We are here to help you with all your banking needs.</p>
+            </div>
 
             <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', }}>
 
@@ -27,8 +30,8 @@ export default function Team() {
                 )}
 
             </div>
-              <br />
-              <br />
+            <br />
+            <br />
         </div>
     )
 }
