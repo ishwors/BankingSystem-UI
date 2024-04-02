@@ -35,7 +35,9 @@ div>ul>li>a {
     color: black;
     cursor: pointer;
     text-decoration: none;
+    white-space: nowrap;
 }
+
 
 #navLogo {
     width: 150px;

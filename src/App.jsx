@@ -12,6 +12,10 @@ import AdminUsers from './pages/admin/AdminUsers.jsx'
 //define teller pages
 import UserDashboard from './pages/UserDashboard.jsx'
 import Home from './pages/Home.jsx'
+
+import Team from './pages/Team.jsx'
+import ContactUs from './pages/ContactUs.jsx'
+import AboutUs from './pages/AboutUs.jsx'
 import NoPage from './pages/NoPage.jsx'
 import Login from './pages/Login.jsx'
 import Transaction from './pages/Transaction.jsx';
@@ -20,7 +24,7 @@ import Transaction from './pages/Transaction.jsx';
 //define css files
 import './index.css'
 import './styles/global.scss'
-import AccountTable from './components/accounts/AccountTable.jsx'; 
+import AccountTable from './components/accounts/AccountTable.jsx';
 import Account from './components/accounts/index.jsx';
 import ForgotPassword from './pages/ForgotPassword.jsx';
 
@@ -34,8 +38,12 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/team" element={<Team />} />
             <Route path="/@adminLogin" element={<AdminLogin />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/contactUs" element={<ContactUs />} />
+            <Route path="/aboutUs" element={<AboutUs />} />
+
 
             <Route path="/transaction" element={<Transaction />} />
 

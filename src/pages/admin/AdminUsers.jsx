@@ -54,16 +54,17 @@ export default function AdminUsers() {
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="All Users" {...a11yProps(0)} />
-          <Tab label="Register User" {...a11yProps(1)} />
+          <Tab label="Register Users" {...a11yProps(0)} />
+          <Tab label="View Users" {...a11yProps(1)} />
           <Tab label="Item Three" {...a11yProps(2)} />
         </Tabs>
       </Box>
+
       <CustomTabPanel value={value} index={0}>
-        <AdminViewUsers />
+        <AdminRegisterUser />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        <AdminRegisterUser />
+        <AdminViewUsers />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
         Item Three
