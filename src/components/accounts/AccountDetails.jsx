@@ -53,7 +53,7 @@ export default function AccountDetails() {
 
 
     return (
-        <div>
+        <>
             <h2><b>Account Details</b></h2>
             <div className="container">
                 {accountDetails ? (
@@ -74,18 +74,19 @@ export default function AccountDetails() {
                         <p><b>Modified At:</b> {accountDetails.modifiedAt}</p>
 
 
-                        <FormDialog
-                            open={open}
-                            onClose={handleClose}
-                            onOpen={handleClickOpen}
-                            account={accountToEdit}
-                            accountNumber={accountToEdit?.accountNumber}
-                        />
+
                     </div>
                 ) : (
                     <p>No account details found</p>
                 )}
             </div>
-        </div>
+            <FormDialog
+                open={open}
+                onClose={handleClose}
+                onOpen={handleClickOpen}
+                account={accountToEdit}
+                accountNumber={accountToEdit?.accountNumber}
+            />
+        </>
     );
 }

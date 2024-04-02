@@ -160,25 +160,14 @@ export default function CustomizedTables() {
                       <Button onClick={() => setAccountToDelete(account)}>
                         <DeleteIcon />
                       </Button>
-                      <AlertDialog
-                        open={!!accountToDelete}
-                        onClose={() => setAccountToDelete(null)}
-                        onConfirm={handleDeleteAccount}
-                        account={accountToDelete}
-                      />
+
                       <Button onClick={() => {
                         setAccountToEdit(account);
                         handleClickOpen();
                       }}>
                         <EditIcon />
                       </Button>
-                      <FormDialog
-                        open={open}
-                        onClose={handleClose}
-                        onOpen={handleClickOpen}
-                        account={accountToEdit}
-                        accountNumber={accountToEdit?.accountNumber}
-                      />
+
                     </Stack>
                   </StyledTableCell>
                 </StyledTableRow>
@@ -189,6 +178,19 @@ export default function CustomizedTables() {
       ) : (
         <p>No accounts found.</p>
       )}
+
+      <AlertDialog
+        open={!!accountToDelete}
+        onClose={() => setAccountToDelete(null)}
+        onConfirm={handleDeleteAccount}
+        account={accountToDelete}
+      /><FormDialog
+        open={open}
+        onClose={handleClose}
+        onOpen={handleClickOpen}
+        account={accountToEdit}
+        accountNumber={accountToEdit?.accountNumber}
+      />
     </>
   );
 }
