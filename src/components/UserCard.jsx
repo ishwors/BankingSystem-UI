@@ -136,7 +136,7 @@ import axios from 'axios';
 
 export default function UserCard({ userData }) {
     return (
-        <Card sx={{ height:500, width: 350, margin: 3, padding: 2, }}>
+        <Card sx={{ height: 500, width: 350, margin: 3, padding: 2, }}>
             {/* <CardHeader
                 action={
                     <IconButton aria-label="settings">
@@ -148,7 +148,7 @@ export default function UserCard({ userData }) {
                 {
                     <Avatar sx={{ bgcolor: red[500], width: 250, height: 250 }} style={{ marginBottom: '2rem', }}>
                         {userData.img ? (
-                            <img src={userData.image} alt="User Avatar" />
+                            <img src={userData.img} alt="User Avatar" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                         ) : (
                             userData.name.charAt(0).toUpperCase()
                         )}

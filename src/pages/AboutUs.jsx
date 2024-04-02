@@ -6,9 +6,12 @@ export default function AboutUs() {
     return (
         <div>
             <Navbar />
-            <h1>About Us</h1>
-            <p>Welcome to our banking system, where we strive to provide you with the best financial services.
-                <br></br> Our mission is to make banking simple, secure, and convenient for you.</p>
+            <div style={{ backgroundColor: 'lightgreen', height: '15rem', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center' }}>
+                <h2>About Us</h2>
+                <br />
+                <p>Welcome to our banking system, where we strive to provide you with the best financial services.
+                    <br></br> Our mission is to make banking simple, secure, and convenient for you.</p>
+            </div>
 
             <h2>Our Vision</h2>
             <p>Our vision is to be the most trusted and preferred banking partner, offering innovative solutions and excellent customer service. We aim to build long-lasting relationships with our customers and be a reliable partner in their financial journey.</p>
