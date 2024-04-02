@@ -155,6 +155,12 @@ export default function CustomizedTables() {
                   <StyledTableCell align="right">
                     {account.modifiedAt}
                   </StyledTableCell>
+                  {/* <StyledTableCell align="right">
+                  {(account.createdAt).split('T')[0]}
+                  </StyledTableCell>
+                  <StyledTableCell align="right">
+                  {(account.modifiedAt).split('T')[0]}
+                  </StyledTableCell> */}
                   <StyledTableCell align="right">
                     <Stack direction="row" spacing={2}>
                       <Button onClick={() => setAccountToDelete(account)}>
