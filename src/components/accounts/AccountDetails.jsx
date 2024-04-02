@@ -70,8 +70,8 @@ export default function AccountDetails() {
                                 <EditIcon />
                             </IconButton>
                         </p>
-                        <p><b>Created At:</b> {(accountDetails.createdAt).split('T')[0]}</p>
-                        <p><b>Created At:</b> {(accountDetails.modifiedAt).split('T')[0]}</p>
+                        <p><b>Created At:</b>{accountDetails.createdAt}</p>
+                        <p><b>Created At:</b>{accountDetails.modifiedAt}</p>
 
 
 
