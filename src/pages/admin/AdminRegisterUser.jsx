@@ -45,6 +45,13 @@ export default function AdminRegisterUser() {
             [name]: value,
         }));
     };
+    const token = localStorage.getItem('token');
+
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    };
 
     const registerUser = async (data) => {
         try {
@@ -52,8 +59,11 @@ export default function AdminRegisterUser() {
             const response = await fetch('http://localhost:5224/api/users', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
                 },
+                credentials: 'include',
+
                 body: JSON.stringify({
                     UserName: data.userName, Fullname: data.fullName, Email: data.email, Password: data.password, Address: data.address, PhoneNumber: data.phone, UserType: data.userType,
                     DateOfBirth: "2024-03-30T13:40:13.001Z",
