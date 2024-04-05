@@ -5,13 +5,33 @@ import { List, ListItem ,ListItemText,Divider,Box,LinearProgress} from '@mui/mat
 const ViewKycPage = () => {
     const [kycData, setKycData] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+
+    const userId = localStorage.getItem('userId');
+
+    const getToken = () => {
+        const storedToken = localStorage.getItem('token'); // Replace with secure storage if needed
+        if (!storedToken) {
+          // Handle missing token (e.g., redirect to login)
+          console.error('Missing token. User needs to log in.');
+          return null;
+        }
+        return storedToken;
+        };
+
+      const config = {
+        headers: {
+            'Authorization': `Bearer ${getToken()}`, // Use retrieved token
+        },
+      };
     
     useEffect(() => {
+        console.log("fetching data......");
         const fetchData = async () => {
             try {
-                const userId = localStorage.getItem('userId');
-                const response = await axios.get(`http://localhost:5224/api/kycdocument/${userId}`);
+                const response = await axios.get(`http://localhost:5224/api/kycdocument/${userId}`,{
+                    withCredentials: true, // Add withCredentials option
+                    headers: config.headers // Send token in headers
+                });
                 console.log(response.data);
                 
                 if (response.status === 200) {
@@ -23,17 +43,13 @@ const ViewKycPage = () => {
 
                 setLoading(false);
             } catch (error) {
-                console.error('Please fill the Kyc form.');
+                console.error('Error fetching KYC data',error);
                 setError(error);
                 setLoading(false);
             }
         };
 
         fetchData();
-
-        return () => {
-            // Cleanup function if needed
-        };
     }, []);
 
     const style = {

@@ -12,6 +12,7 @@ const UpdateKycPage = () => {
   const [error, setError] = useState(null);
   const [isAlertVisible, setIsAlertVisible] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
+  const userId = localStorage.getItem('userId');
   const [formData, setformData] = useState({
       KycId: '',
       UserId: '',
@@ -22,11 +23,29 @@ const UpdateKycPage = () => {
       UserImageFile: null,
       CitizenshipImageFile: null
   });
+
+  const getToken=()=>{
+    const storedToken = localStorage.getItem('token'); // Replace with secure storage if needed
+    if (!storedToken) {
+      // Handle missing token (e.g., redirect to login)
+      console.error('Missing token. User needs to log in.');
+      return null;
+    }
+    return storedToken;
+    };
+    const config={
+        headers: {
+            'Authorization': `Bearer ${getToken()}`, // Use retrieved token
+        }
+    }
+
   useEffect(() => {
       const fetchData = async () => {
           try {
-              const userId = localStorage.getItem('userId');
-              const response = await axios.get(`http://localhost:5224/api/kycdocument/${userId}`);
+              const response = await axios.get(`http://localhost:5224/api/kycdocument/${userId}`,{
+                  withCredentials: true, // Add withCredentials option
+                  headers: config.headers // Send token in headers
+              });
               console.log('KYC data:', response.data);
 
               if (response.status === 200) {
